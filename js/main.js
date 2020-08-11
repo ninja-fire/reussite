@@ -4,6 +4,10 @@ class Card {
 
     this.rank = rank;
     this.family = family;
+    this.container = document.createElement('div');
+    this.container.classList.add('card-container');
+
+    this.container.innerHTML = `${this.rank} ${this.family}`;
 
   }
 
@@ -35,10 +39,18 @@ class Deck {
   static families = ['heart', 'diamond', 'club', 'spade'];
   static ranks = ['7', '8', '9', '10', 'jack', 'queen', 'king', 'as'];
 
-  constructor() {
+  constructor(rootContainer) {
     this.stack = [];
+    this.rootContainer = rootContainer;
+    this.container = document.createElement('div');
+    this.container.id = 'deck-container';
+    this.rootContainer.appendChild(this.container);
+    this.button = document.createElement('button');
+    this.container.appendChild(this.button);
+    this.button.innerHTML = 'DECK';
     this.init();
     this.shuffle();
+
   }
 
   init() {
@@ -85,9 +97,13 @@ class Deck {
 
 class Board {
 
-  constructor() {
+  constructor(rootContainer) {
 
     this.cards = [];
+    this.rootContainer = rootContainer;
+    this.container = document.createElement('div');
+    this.container.id = 'board-container';
+    this.rootContainer.appendChild(this.container);
   }
 
   isWinSize() {
@@ -112,6 +128,7 @@ class Board {
 
   addCard(card) {
     this.cards.push(card);
+    this.container.appendChild(card.container);
   }
 
   suppCard(card){
@@ -132,11 +149,17 @@ class Board {
 
 class Game {
 
-  constructor() {
-    this.deck = new Deck();
-    this.board = new Board();
+  constructor(rootContainer) {
+
     this.endOfGame = false;
     this.win = false;
+    this.rootContainer = rootContainer;
+    this.container = document.createElement('div');
+    this.container.id = 'game-container';
+    this.rootContainer.appendChild(this.container);
+    this.deck = new Deck(this.container);
+    this.board = new Board(this.container);
+    this.deck.button.addEventListener('click', (event) => this.pickCard() );
 
   }
 
@@ -204,9 +227,12 @@ class Game {
 
 }
 
-
-const game = new Game();
-game.pickCard();
-game.pickCard();
-game.pickCard();
+function init () {
+  const rootContainer = document.getElementById('root-container');
+  const game = new Game(rootContainer);
+  // game.pickCard();
+  // game.pickCard();
+  // game.pickCard();
+}
+init();
 
