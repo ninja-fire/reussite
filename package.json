@@ -1,0 +1,23 @@
+{
+  "name": "reussite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/main.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ninja-fire/reussite.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ninja-fire/reussite/issues"
+  },
+  "homepage": "https://github.com/ninja-fire/reussite",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
