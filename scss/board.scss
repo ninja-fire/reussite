@@ -1,0 +1,16 @@
+#board-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: auto;
+  padding: 1em;
+
+  .card-container {
+    align-self: center;
+    cursor: pointer;
+    height: 210px;
+    justify-self: center;
+    padding: 1em;
+    width: 115px;
+
+  }
+}

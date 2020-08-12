@@ -1,0 +1,13 @@
+@import "board";
+@import "deck";
+
+#game-container {
+  background-color: #E0E0E0;
+  border-radius: 20px;
+  box-sizing: content-box;
+  box-shadow: 20px 20px 60px #cccccc,
+  -20px -20px 60px #ffffff;
+  display: flex;
+  flex-direction: column;
+ //height: calc(100% - 10px);
+}

@@ -12,13 +12,13 @@ class Deck {
     this.container = document.createElement('div');
     this.container.id = 'deck-container';
     this.rootContainer.appendChild(this.container);
-    this.button = document.createElement('button');
-    this.container.appendChild(this.button);
-    this.button.innerText = 'DECK';
+    this.image = document.createElement('img');
+    this.image.src = 'https://res.cloudinary.com/ninjafire/image/upload/v1597247162/Reussite/deck_kzblkb.svg';
+    this.container.appendChild(this.image);
     this.init();
     this.shuffle();
-    this.button.addEventListener('click', this.onPickCard);
-    this.counter = document.createElement('div');
+    this.image.addEventListener('click', this.onPickCard);
+    this.counter = document.createElement('p');
     this.container.appendChild(this.counter);
     this.counter.innerText = `${this.stack.length}`;
   }

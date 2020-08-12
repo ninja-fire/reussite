@@ -9,7 +9,14 @@ class Game {
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
     this.init();
-
+    // const style = document.createElement('style');
+  //   style.innerHTML = `
+  // #game-container {
+  //   display: flex;
+  //   flex-direction: row;
+  // }
+  // `;
+  //   document.head.appendChild(style);
   }
 
   init() {
@@ -34,6 +41,7 @@ class Game {
 
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
           this.isEndOfGame = true;
+          this.endOfGame();
           console.log('Lose');
         }
         return true;

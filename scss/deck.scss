@@ -1,0 +1,19 @@
+@import "card";
+
+#deck-container {
+
+  height: 40%;
+  padding: 2em 1em;
+  text-align: center;
+
+  img {
+    cursor: pointer;
+  }
+
+  p {
+    font-family: Roboto, sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+
+  }
+}

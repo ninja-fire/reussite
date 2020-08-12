@@ -8,6 +8,7 @@ class Board {
     this.container = document.createElement('div');
     this.container.id = 'board-container';
     this.rootContainer.appendChild(this.container);
+
   }
 
   isWinSize() {
