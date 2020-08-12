@@ -6,8 +6,10 @@ class Card {
     this.family = family;
     this.container = document.createElement('div');
     this.container.classList.add('card-container');
-
-    this.container.innerHTML = `${this.rank} ${this.family}`;
+    this.container.innerHTML =
+`<div>
+  ${this.rank} ${this.family}
+</div>`;
 
   }
 
@@ -39,18 +41,19 @@ class Deck {
   static families = ['heart', 'diamond', 'club', 'spade'];
   static ranks = ['7', '8', '9', '10', 'jack', 'queen', 'king', 'as'];
 
-  constructor(rootContainer) {
+  constructor(rootContainer, onPickCard) {
     this.stack = [];
+    this.onPickCard = onPickCard;
     this.rootContainer = rootContainer;
     this.container = document.createElement('div');
     this.container.id = 'deck-container';
     this.rootContainer.appendChild(this.container);
     this.button = document.createElement('button');
     this.container.appendChild(this.button);
-    this.button.innerHTML = 'DECK';
+    this.button.innerText = 'DECK';
     this.init();
     this.shuffle();
-
+    this.button.addEventListener('click', this.onPickCard);
   }
 
   init() {
@@ -97,10 +100,11 @@ class Deck {
 
 class Board {
 
-  constructor(rootContainer) {
+  constructor(rootContainer, onMoveCard) {
 
     this.cards = [];
     this.rootContainer = rootContainer;
+    this.onMoveCard = onMoveCard;
     this.container = document.createElement('div');
     this.container.id = 'board-container';
     this.rootContainer.appendChild(this.container);
@@ -129,10 +133,13 @@ class Board {
   addCard(card) {
     this.cards.push(card);
     this.container.appendChild(card.container);
+    card.container.addEventListener('click', () => this.onMoveCard(card) )
   }
 
-  suppCard(card){
-    this.cards = this.cards.filter( (_, i) => this.cards[i + 1] !== card);
+  suppPreviousCard(card){
+    const previousCard = this.cards.find(  (_, i) => this.cards[i + 1] === card);
+    this.cards = this.cards.filter( (boardCard) => boardCard !== previousCard);
+    this.container.removeChild(previousCard.container);
   }
 
   canMoveAtLeastOne() {
@@ -157,9 +164,8 @@ class Game {
     this.container = document.createElement('div');
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
-    this.deck = new Deck(this.container);
-    this.board = new Board(this.container);
-    this.deck.button.addEventListener('click', (event) => this.pickCard() );
+    this.deck = new Deck(this.container, () => this.pickCard() );
+    this.board = new Board(this.container, (card) => this.moveCard(card) );
 
   }
 
@@ -186,13 +192,13 @@ class Game {
 
   }
 
-  moveCard(pickedCard) {
+  moveCard(card) {
 
     if (this.endOfGame === false) {
 
-      if (this.board.canMove(pickedCard)) {
+      if (this.board.canMove(card)) {
 
-        this.board.suppCard(pickedCard);
+        this.board.suppPreviousCard(card);
 
         if (this.board.isWinSize() && this.deck.empty() ) {
 
@@ -211,6 +217,7 @@ class Game {
         return true;
       }
     }
+    console.log('You can not move');
     return false;
   }
 
@@ -236,3 +243,15 @@ function init () {
 }
 init();
 
+
+
+function add (a, b){
+
+  return a + b;
+
+}
+
+
+const c = 2;
+const d = 3;
+console.log(add((c+d), d) );
