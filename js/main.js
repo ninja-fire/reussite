@@ -90,6 +90,11 @@ class Deck {
     return this.stack.length === 0;
   }
 
+  destroy() {
+    this.stack = [];
+    this.rootContainer.removeChild(this.container);
+  }
+
   toJson() {
 
     return this.stack.map(card => card.toJson());
@@ -146,6 +151,11 @@ class Board {
     return !!this.cards.find(card => this.canMove(card))
   }
 
+  destroy() {
+    this.cards = [];
+    this.rootContainer.removeChild(this.container);
+  }
+
   toJson() {
 
     return this.cards.map(card => card.toJson());
@@ -157,13 +167,18 @@ class Board {
 class Game {
 
   constructor(rootContainer) {
-
-    this.endOfGame = false;
-    this.win = false;
     this.rootContainer = rootContainer;
     this.container = document.createElement('div');
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
+    this.init();
+
+  }
+
+  init() {
+
+    this.isEndOfGame = false;
+    this.win = false;
     this.deck = new Deck(this.container, () => this.pickCard() );
     this.board = new Board(this.container, (card) => this.moveCard(card) );
 
@@ -171,7 +186,7 @@ class Game {
 
   pickCard() {
 
-    if (this.endOfGame === false) {
+    if (this.isEndOfGame === false) {
 
       const pickedCard = this.deck.pick();
 
@@ -181,7 +196,7 @@ class Game {
         console.log(this.toJson());
 
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
-          this.endOfGame = true;
+          this.isEndOfGame = true;
           console.log('Lose');
         }
         return true;
@@ -194,26 +209,29 @@ class Game {
 
   moveCard(card) {
 
-    if (this.endOfGame === false) {
+    if (this.isEndOfGame === false) {
 
       if (this.board.canMove(card)) {
 
         this.board.suppPreviousCard(card);
+        console.log(this.toJson() );
 
         if (this.board.isWinSize() && this.deck.empty() ) {
 
-          this.endOfGame = true;
+          this.isEndOfGame = true;
           this.win = true;
           console.log('Win');
+          this.endOfGame();
 
         } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne() ) {
 
-          this.endOfGame = true;
+          this.isEndOfGame = true;
+
           console.log('Lose');
+          this.endOfGame();
 
         }
 
-        console.log(this.toJson());
         return true;
       }
     }
@@ -221,11 +239,28 @@ class Game {
     return false;
   }
 
+  endOfGame (){
+
+    this.board.destroy();
+    this.deck.destroy();
+    this.board = null;
+    this.deck = null;
+    const button = document.createElement('button');
+    this.container.appendChild(button);
+    const status = this.win ? 'Congrats' : 'Boooooouh';
+    button.innerText = `${status}, start new game`;
+    button.addEventListener('click', () => {
+      this.container.removeChild(button);
+      this.init();
+    });
+
+  }
+
   toJson() {
 
     return {
       deck: this.deck.toJson(),
-      endOfGame: this.endOfGame,
+      endOfGame: this.isEndOfGame,
       win: this.win,
       board: this.board.toJson()
     };
@@ -236,22 +271,7 @@ class Game {
 
 function init () {
   const rootContainer = document.getElementById('root-container');
-  const game = new Game(rootContainer);
-  // game.pickCard();
-  // game.pickCard();
-  // game.pickCard();
+  new Game(rootContainer);
 }
+
 init();
-
-
-
-function add (a, b){
-
-  return a + b;
-
-}
-
-
-const c = 2;
-const d = 3;
-console.log(add((c+d), d) );
