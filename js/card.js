@@ -43,22 +43,11 @@ class Card {
       } else {
 
         const paths = rank.getElementsByTagName('path');
-
-        if (this.family === 'club' || this.family === 'spade') {
-
-          Array.from(paths).forEach(path => {
-            path.setAttribute('fill', '#3D3C3C');
-
-          });
-        } else {
-
-          Array.from(paths).forEach(path => {
-            path.setAttribute('fill', '#FF6161');
-
-          });
-        }
+        const color = this.family === 'club' || this.family === 'spade' ? '#3D3C3C' : '#FF6161';
+        Array.from(paths).forEach(path => path.setAttribute('fill', color) );
 
       }
+
     });
 
     Array.from(gFamilyCardItems).forEach(family => {
@@ -70,23 +59,13 @@ class Card {
       } else {
 
         const paths = family.getElementsByTagName('path');
+        const color = this.family === 'club' || this.family === 'spade' ? '#3D3C3C' : '#FF6161';
+        Array.from(paths).forEach(path => path.setAttribute('fill', color) );
 
-        if (this.family === 'club' || this.family === 'spade') {
-
-          Array.from(paths).forEach(path => {
-            path.setAttribute('fill', '#3D3C3C');
-
-          });
-
-        } else {
-
-          Array.from(paths).forEach(path => {
-            path.setAttribute('fill', '#FF6161');
-
-          });
-        }
       }
+
     });
+
   }
 
   toJson() {
