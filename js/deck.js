@@ -1,4 +1,5 @@
 import { Card } from '/js/card.js';
+import deckImg from '../image/deck.svg';
 
 class Deck {
 
@@ -12,9 +13,11 @@ class Deck {
     this.container = document.createElement('div');
     this.container.id = 'deck-container';
     this.rootContainer.appendChild(this.container);
+
     this.image = document.createElement('img');
-    this.image.src = 'https://res.cloudinary.com/ninjafire/image/upload/v1597247162/Reussite/deck_kzblkb.svg';
+    this.image.src = deckImg;
     this.container.appendChild(this.image);
+
     this.init();
     this.shuffle();
     this.image.addEventListener('click', this.onPickCard);

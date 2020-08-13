@@ -1,5 +1,6 @@
 import { Deck } from '/js/deck.js';
 import { Board } from '/js/board.js';
+import cardLose from "../image/card-lose.svg";
 
 class Game {
 
@@ -9,14 +10,7 @@ class Game {
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
     this.init();
-    // const style = document.createElement('style');
-  //   style.innerHTML = `
-  // #game-container {
-  //   display: flex;
-  //   flex-direction: row;
-  // }
-  // `;
-  //   document.head.appendChild(style);
+    this.endOfGame();// todo supprimer
   }
 
   init() {
@@ -90,15 +84,39 @@ class Game {
     this.deck.destroy();
     this.board = null;
     this.deck = null;
+
+    this.cardLose();
+    this.rootContainer.classList = 'height';
+    this.container.classList = 'height';
+    const btnContainer = document.createElement('div');
+    btnContainer.id = 'btn-container';
+    this.container.appendChild(btnContainer);
     const button = document.createElement('button');
-    this.container.appendChild(button);
+    btnContainer.appendChild(button);
     const status = this.win ? 'Congrats' : 'Boooooouh';
     button.innerText = `${status}, start new game`;
     button.addEventListener('click', () => {
-      this.container.removeChild(button);
+      this.container.innerHTML = '';
+      this.rootContainer.classList.remove('height');
+      this.container.classList.remove('height');
       this.init();
     });
 
+  }
+
+  cardLose () {
+
+    const cardContainer = document.createElement('div');
+    cardContainer.id = 'card-container';
+    this.container.appendChild(cardContainer);
+
+    for (let i = 0; i < 10; i++) {
+
+      this.image = document.createElement('img');
+      this.image.src = cardLose;
+      this.image.className = 'card-lose';
+      cardContainer.appendChild(this.image);
+    }
   }
 
   toJson() {
