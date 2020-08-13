@@ -48,3 +48,9 @@ input {
   border-radius: 0
 }
 /* CSS reset */
+
+/* Reset mobile tap default blue box*/
+*:focus, *:active {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
