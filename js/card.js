@@ -1,5 +1,5 @@
 import fs from 'fs';
-const cardSvg = fs.readFileSync(__dirname + '/../image/card-all.svg', 'utf8');
+const cardSvg = fs.readFileSync(__dirname + '/../image/card.svg', 'utf8');
 
 class Card {
 
@@ -13,29 +13,8 @@ class Card {
     this.svgCard = this.container.querySelector('svg');
     this.gRankCard = this.svgCard.getElementById('rank');
     this.gFamilyCard = this.svgCard.getElementById('family');
-    this.gRankCardItems = this.gRankCard.getElementsByTagName('g');
-    this.gFamilyCardItems = this.gFamilyCard.getElementsByTagName('g');
-    Array.from(this.gRankCardItems).forEach(rank => {
-      if (rank.id !== this.rank){
-        this.gRankCard.removeChild(rank);
-      } else {
-        const paths = rank.getElementsByTagName('path');
-        Array.from(paths).forEach(path => {
-          path.setAttribute('fill', '#3D3C3C');
-        });
-      }
-    });
+    this.revealColor();
 
-    Array.from(this.gFamilyCardItems).forEach(family => {
-      if (family.id !== this.family){
-        this.gFamilyCard.removeChild(family);
-      } else {
-        const paths = family.getElementsByTagName('path');
-        Array.from(paths).forEach(path => {
-          path.setAttribute('fill', '#3D3C3C');
-        });
-      }
-    });
   }
 
   isSameFamily(card) {
@@ -48,6 +27,66 @@ class Card {
 
     return this.rank === card.rank;
 
+  }
+
+  revealColor () {
+
+    const gRankCardItems = this.gRankCard.getElementsByTagName('g');
+    const gFamilyCardItems = this.gFamilyCard.getElementsByTagName('g');
+
+    Array.from(gRankCardItems).forEach(rank => {
+
+      if (rank.id !== this.rank){
+
+        this.gRankCard.removeChild(rank);
+
+      } else {
+
+        const paths = rank.getElementsByTagName('path');
+
+        if (this.family === 'club' || this.family === 'spade') {
+
+          Array.from(paths).forEach(path => {
+            path.setAttribute('fill', '#3D3C3C');
+
+          });
+        } else {
+
+          Array.from(paths).forEach(path => {
+            path.setAttribute('fill', '#FF6161');
+
+          });
+        }
+
+      }
+    });
+
+    Array.from(gFamilyCardItems).forEach(family => {
+
+      if (family.id !== this.family){
+
+        this.gFamilyCard.removeChild(family);
+
+      } else {
+
+        const paths = family.getElementsByTagName('path');
+
+        if (this.family === 'club' || this.family === 'spade') {
+
+          Array.from(paths).forEach(path => {
+            path.setAttribute('fill', '#3D3C3C');
+
+          });
+
+        } else {
+
+          Array.from(paths).forEach(path => {
+            path.setAttribute('fill', '#FF6161');
+
+          });
+        }
+      }
+    });
   }
 
   toJson() {
