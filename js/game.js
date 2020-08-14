@@ -3,39 +3,43 @@ import { Board } from '/js/board.js';
 import cardLose from "../image/card-lose.svg";
 import rulesImg from '../image/rules.svg';
 
+
 class Game {
 
   constructor(rootContainer) {
     this.rootContainer = rootContainer;
-    this.container = document.createElement('div');
-    this.container.id = 'game-container';
-    this.rootContainer.appendChild(this.container);
+    // this.intro();
     this.init();
     this.endOfGame();
 
   }
 
-
   intro () {
-    this.container.classList.add('intro-outro');
 
     const introContainer = document.createElement('div');
-    introContainer.id = 'btn-rules-container';
-    this.container.appendChild(introContainer);
+    introContainer.id = 'intro-container';
+    this.rootContainer.appendChild(introContainer);
+
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+    introContainer.appendChild(btnContainer);
 
     const btnIntro = document.createElement('button');
     btnIntro.id = 'btn-intro';
     btnIntro.innerText = `Let’s start a new game !`;
-    introContainer.appendChild(btnIntro);
+    btnContainer.appendChild(btnIntro);
 
     btnIntro.addEventListener('click', () => {
-      this.container.classList.remove('intro-outro');
-      this.container.classList.add('playing');
+      this.rootContainer.removeChild(introContainer);
       this.init();
     });
   }
 
   init() {
+
+    this.container = document.createElement('div');
+    this.container.id = 'game-container';
+    this.rootContainer.appendChild(this.container);
 
     this.isEndOfGame = false;
     this.win = false;
@@ -106,16 +110,31 @@ class Game {
     this.deck.destroy();
     this.board = null;
     this.deck = null;
+    this.rootContainer.removeChild(this.container);
 
-    this.cardLose();
+    const endOfGameContainer = document.createElement('div');
+    endOfGameContainer.id = 'end-of-game-container';
+    this.rootContainer.appendChild(endOfGameContainer);
+
+    this.cardLose(endOfGameContainer);
 
     const btnRulesContainer = document.createElement('div');
     btnRulesContainer.id = 'btn-rules-container';
-    this.container.appendChild(btnRulesContainer);
+    endOfGameContainer.appendChild(btnRulesContainer);
 
     const btnContainer = document.createElement('div');
-    btnContainer.id = 'btn-container';
+    btnContainer.classList.add('btn-container');
     btnRulesContainer.appendChild(btnContainer);
+
+    const button = document.createElement('button');
+    btnContainer.appendChild(button);
+    // const status = this.win ? 'Congrats' : 'Boooooouh';
+    // button.innerText = `${status}, start new game`;
+    button.innerText = `Let’s start a new game !`;
+    button.addEventListener('click', () => {
+      this.rootContainer.removeChild(endOfGameContainer);
+      this.init();
+    });
 
     const rulesContainer = document.createElement('div');
     rulesContainer.id = 'rules-container';
@@ -126,24 +145,13 @@ class Game {
     rulesImgContainer.src = rulesImg;
     rulesContainer.appendChild(rulesImgContainer);
 
-
-    const button = document.createElement('button');
-    btnContainer.appendChild(button);
-    // const status = this.win ? 'Congrats' : 'Boooooouh';
-    // button.innerText = `${status}, start new game`;
-    button.innerText = `Let’s start a new game !`;
-    button.addEventListener('click', () => {
-      this.container.innerHTML = '';
-      this.init();
-    });
-
   }
 
-  cardLose () {
+  cardLose (endOfGameContainer) {
 
     const cardContainer = document.createElement('div');
     cardContainer.id = 'card-container';
-    this.container.appendChild(cardContainer);
+    endOfGameContainer.appendChild(cardContainer);
 
     for (let i = 0; i < 10; i++) {
 

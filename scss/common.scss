@@ -1,0 +1,51 @@
+//Variables
+$breakpoint-tablet: 960px;
+//Variables
+
+
+// Style
+
+body {
+  background-color: #F5F5F5;
+  height: 100vh;
+  width: 100vw;
+
+  #root-container {
+    padding: 2em;
+
+  }
+
+  .btn-container {
+
+    padding-bottom: 2em;
+
+    button {
+      background: #8CA4F8;
+      border: 2px solid #FFFFFF;
+      box-sizing: border-box;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      color: white;
+      font-family: 'Hammersmith One', sans-serif;
+      font-size: 1em;
+      padding: 1em 4em;
+      cursor: pointer;
+    }
+
+  }
+
+}
+// Style
+
+//Media query
+@media (max-width: $breakpoint-tablet) and (orientation:landscape) {
+  body {
+
+    #root-container {
+      padding: 1em;
+    }
+  }
+
+}
+//Media query
+
