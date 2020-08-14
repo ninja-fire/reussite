@@ -1,6 +1,7 @@
 import { Deck } from '/js/deck.js';
 import { Board } from '/js/board.js';
 import cardLose from "../image/card-lose.svg";
+import rulesImg from '../image/rules.svg';
 
 class Game {
 
@@ -88,13 +89,30 @@ class Game {
     this.cardLose();
     this.rootContainer.classList = 'height';
     this.container.classList = 'height';
+
+    const btnRulesContainer = document.createElement('div');
+    btnRulesContainer.id = 'btn-rules-container';
+    this.container.appendChild(btnRulesContainer);
+
     const btnContainer = document.createElement('div');
     btnContainer.id = 'btn-container';
-    this.container.appendChild(btnContainer);
+    btnRulesContainer.appendChild(btnContainer);
+
+    const rulesContainer = document.createElement('div');
+    rulesContainer.id = 'rules-container';
+    btnRulesContainer.appendChild(rulesContainer);
+
+    const rulesImgContainer = document.createElement('img');
+    rulesImgContainer.id = 'rules-img-container';
+    rulesImgContainer.src = rulesImg;
+    rulesContainer.appendChild(rulesImgContainer);
+
+
     const button = document.createElement('button');
     btnContainer.appendChild(button);
-    const status = this.win ? 'Congrats' : 'Boooooouh';
-    button.innerText = `${status}, start new game`;
+    // const status = this.win ? 'Congrats' : 'Boooooouh';
+    // button.innerText = `${status}, start new game`;
+    button.innerText = `Let’s start a new game !`;
     button.addEventListener('click', () => {
       this.container.innerHTML = '';
       this.rootContainer.classList.remove('height');
