@@ -11,7 +11,28 @@ class Game {
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
     this.init();
-    this.endOfGame();// todo supprimer
+    this.endOfGame();
+
+  }
+
+
+  intro () {
+    this.container.classList.add('intro-outro');
+
+    const introContainer = document.createElement('div');
+    introContainer.id = 'btn-rules-container';
+    this.container.appendChild(introContainer);
+
+    const btnIntro = document.createElement('button');
+    btnIntro.id = 'btn-intro';
+    btnIntro.innerText = `Let’s start a new game !`;
+    introContainer.appendChild(btnIntro);
+
+    btnIntro.addEventListener('click', () => {
+      this.container.classList.remove('intro-outro');
+      this.container.classList.add('playing');
+      this.init();
+    });
   }
 
   init() {
@@ -87,8 +108,6 @@ class Game {
     this.deck = null;
 
     this.cardLose();
-    this.rootContainer.classList = 'height';
-    this.container.classList = 'height';
 
     const btnRulesContainer = document.createElement('div');
     btnRulesContainer.id = 'btn-rules-container';
@@ -115,8 +134,6 @@ class Game {
     button.innerText = `Let’s start a new game !`;
     button.addEventListener('click', () => {
       this.container.innerHTML = '';
-      this.rootContainer.classList.remove('height');
-      this.container.classList.remove('height');
       this.init();
     });
 

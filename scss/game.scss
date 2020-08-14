@@ -1,10 +1,6 @@
 @import "board";
 @import "deck";
 
-.height {
-  height: 100%;
-}
-
 #game-container {
   background-color: #F5F5F5;
   border-radius: 20px;
@@ -21,8 +17,6 @@
     flex-direction: column;
     padding-top: 24em;
     overflow-y: scroll;
-
-
 
     #btn-container {
 
@@ -42,24 +36,24 @@
       }
     }
 
-      #rules-container {
+    #rules-container {
 
-        background: #F5F5F5;
-        box-shadow: inset 20px 20px 60px #d0d0d0,
-        inset -20px -20px 60px #ffffff;
-        border-radius: 14px;
-        margin-bottom: 2em;
-        overflow-y: scroll;
-        padding: 3em 2em;
-        width: 80%;
+      background: #F5F5F5;
+      box-shadow: inset 20px 20px 60px #d0d0d0,
+      inset -20px -20px 60px #ffffff;
+      border-radius: 14px;
+      margin-bottom: 2em;
+      overflow-y: scroll;
+      padding: 3em 2em;
+      width: 80%;
 
-        img {
-          display: flex;
-          width: 60%;
-          margin: auto;
-        }
-
+      img {
+        display: flex;
+        width: 60%;
+        margin: auto;
       }
+
+    }
 
   }
 
@@ -93,9 +87,10 @@
               filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.05));
               transform: rotate(0deg);
 
-            } to {
-                filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
-                transform: rotate(#{180 / 10 * $i}deg);
+            }
+            to {
+              filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+              transform: rotate(#{180 / 10 * $i}deg);
 
             }
 
@@ -109,3 +104,57 @@
 
   }
 }
+
+//media query
+$breakpoint-tablet: 960px;
+
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+  #game-container {
+
+    &.playing {
+      flex-direction: row;
+
+    }
+
+    &.intro-outro {
+      flex-direction: column;
+    }
+
+    #card-container {
+      .card-lose {
+
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 1.5em;
+        width: 25vh;
+      }
+    }
+
+
+    #btn-rules-container {
+      overflow-y: visible;
+      padding-top: 15em;
+      width: 100%;
+
+
+      #rules-container {
+        box-shadow: none;
+        overflow-y: visible;
+        padding: 0 2em;
+        width: 100%;
+
+        img {
+          width: 80%;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+//media query

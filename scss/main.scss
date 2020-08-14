@@ -13,3 +13,14 @@ body {
   }
 }
 // Style
+
+//Media query
+@media (max-width: $breakpoint-tablet) and (orientation:landscape) {
+  body {
+
+    #root-container {
+      padding: 1em;
+    }
+  }
+
+}

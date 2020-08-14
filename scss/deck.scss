@@ -18,3 +18,16 @@
 
   }
 }
+
+//media query
+$breakpoint-tablet: 960px;
+
+@media (max-width: $breakpoint-tablet) {
+  #deck-container {
+    height: 100%;
+    padding: 1em 1em;
+
+  }
+
+}
+//media query
