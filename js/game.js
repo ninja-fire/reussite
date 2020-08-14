@@ -131,10 +131,6 @@ class Game {
     // const status = this.win ? 'Congrats' : 'Boooooouh';
     // button.innerText = `${status}, start new game`;
     button.innerText = `Let’s start a new game !`;
-    button.addEventListener('click', () => {
-      this.rootContainer.removeChild(endOfGameContainer);
-      this.init();
-    });
 
     const rulesContainer = document.createElement('div');
     rulesContainer.id = 'rules-container';
@@ -144,6 +140,21 @@ class Game {
     rulesImgContainer.id = 'rules-img-container';
     rulesImgContainer.src = rulesImg;
     rulesContainer.appendChild(rulesImgContainer);
+
+    const cln = btnContainer.cloneNode(true);
+    btnRulesContainer.appendChild(cln);
+
+    // const status = this.win ? 'Congrats' : 'Boooooouh';
+    // button.innerText = `${status}, start new game`;
+    const buttons = btnRulesContainer.querySelectorAll('.btn-container > button');
+    Array.from(buttons).forEach( (button) => {
+      button.addEventListener('click', () => {
+
+        this.rootContainer.removeChild(endOfGameContainer);
+        this.init();
+
+      });
+    });
 
   }
 
