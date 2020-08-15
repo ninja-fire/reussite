@@ -8,9 +8,9 @@ class Game {
 
   constructor(rootContainer) {
     this.rootContainer = rootContainer;
-    // this.intro();
-    this.init();
-    this.endOfGame();
+    this.intro();
+    // this.init();
+    // this.endOfGame();
 
   }
 
@@ -20,19 +20,39 @@ class Game {
     introContainer.id = 'intro-container';
     this.rootContainer.appendChild(introContainer);
 
-    const btnContainer = document.createElement('div');
-    btnContainer.classList.add('btn-container');
-    introContainer.appendChild(btnContainer);
+    const welcomeContainer = document.createElement('div');
+    welcomeContainer.id = 'welcome-container';
+    introContainer.appendChild(welcomeContainer);
+
+    const statusContainer = document.createElement('div');
+    statusContainer.classList.add('status-container');
+    welcomeContainer.appendChild(statusContainer);
+
+    const paraStatus = document.createElement('p');
+    paraStatus.innerText = `Welcome!`;
+    statusContainer.appendChild(paraStatus);
+
+    const btnBlueContainer = document.createElement('div');
+    btnBlueContainer.classList.add('btn-b-container');
+    welcomeContainer.appendChild(btnBlueContainer);
 
     const btnIntro = document.createElement('button');
     btnIntro.id = 'btn-intro';
     btnIntro.innerText = `Let’s start a new game !`;
-    btnContainer.appendChild(btnIntro);
+    btnBlueContainer.appendChild(btnIntro);
 
     btnIntro.addEventListener('click', () => {
       this.rootContainer.removeChild(introContainer);
       this.init();
     });
+
+    const btnPinkContainer = document.createElement('div');
+    btnPinkContainer.classList.add('btn-p-container');
+    welcomeContainer.appendChild(btnPinkContainer);
+
+    const buttonPink = document.createElement('button');
+    btnPinkContainer.appendChild(buttonPink);
+    buttonPink.innerText = `What is this game ?`;
   }
 
   init() {
@@ -122,31 +142,45 @@ class Game {
     btnRulesContainer.id = 'btn-rules-container';
     endOfGameContainer.appendChild(btnRulesContainer);
 
-    const btnContainer = document.createElement('div');
-    btnContainer.classList.add('btn-container');
-    btnRulesContainer.appendChild(btnContainer);
+    const statusContainer = document.createElement('div');
+    statusContainer.classList.add('status-container');
+    btnRulesContainer.appendChild(statusContainer);
 
-    const button = document.createElement('button');
-    btnContainer.appendChild(button);
-    // const status = this.win ? 'Congrats' : 'Boooooouh';
-    // button.innerText = `${status}, start new game`;
-    button.innerText = `Let’s start a new game !`;
+    const paraStatus = document.createElement('p');
+    const status = this.win ? 'Congratulations' : `Don't give up!`;
+    paraStatus.innerText = `${status}`;
+    statusContainer.appendChild(paraStatus);
 
-    const rulesContainer = document.createElement('div');
-    rulesContainer.id = 'rules-container';
-    btnRulesContainer.appendChild(rulesContainer);
+    const btnBlueContainer = document.createElement('div');
+    btnBlueContainer.classList.add('btn-b-container');
+    btnRulesContainer.appendChild(btnBlueContainer);
 
-    const rulesImgContainer = document.createElement('img');
-    rulesImgContainer.id = 'rules-img-container';
-    rulesImgContainer.src = rulesImg;
-    rulesContainer.appendChild(rulesImgContainer);
+    const buttonBlue = document.createElement('button');
+    btnBlueContainer.appendChild(buttonBlue);
+    buttonBlue.innerText = `Let’s start a new game !`;
 
-    const cln = btnContainer.cloneNode(true);
-    btnRulesContainer.appendChild(cln);
+    const btnPinkContainer = document.createElement('div');
+    btnPinkContainer.classList.add('btn-p-container');
+    btnRulesContainer.appendChild(btnPinkContainer);
 
-    // const status = this.win ? 'Congrats' : 'Boooooouh';
-    // button.innerText = `${status}, start new game`;
-    const buttons = btnRulesContainer.querySelectorAll('.btn-container > button');
+    const buttonPink = document.createElement('button');
+    btnPinkContainer.appendChild(buttonPink);
+    buttonPink.innerText = `What is this game ?`;
+
+    // const rulesContainer = document.createElement('div');
+    // rulesContainer.id = 'rules-container';
+    // btnRulesContainer.appendChild(rulesContainer);
+    //
+    // const rulesImgContainer = document.createElement('img');
+    // rulesImgContainer.id = 'rules-img-container';
+    // rulesImgContainer.src = rulesImg;
+    // rulesContainer.appendChild(rulesImgContainer);
+
+    // const cln = btnContainer.cloneNode(true);
+    // btnRulesContainer.appendChild(cln);
+
+
+    const buttons = btnRulesContainer.querySelectorAll('.btn-b-container > button');
     Array.from(buttons).forEach( (button) => {
       button.addEventListener('click', () => {
 
