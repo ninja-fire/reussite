@@ -1,6 +1,6 @@
 import { Deck } from '/js/deck.js';
 import { Board } from '/js/board.js';
-import cardLose from "../image/card-lose.svg";
+import cardBack from "../image/cardBack.svg";
 import rulesImg from '../image/rules.svg';
 
 
@@ -19,6 +19,8 @@ class Game {
     const introContainer = document.createElement('div');
     introContainer.id = 'intro-container';
     this.rootContainer.appendChild(introContainer);
+
+    this.cardAnimation(introContainer, 'card-welcome');
 
     const welcomeContainer = document.createElement('div');
     welcomeContainer.id = 'welcome-container';
@@ -136,7 +138,7 @@ class Game {
     endOfGameContainer.id = 'end-of-game-container';
     this.rootContainer.appendChild(endOfGameContainer);
 
-    this.cardLose(endOfGameContainer);
+    this.cardAnimation(endOfGameContainer, 'card-lose');
 
     const btnRulesContainer = document.createElement('div');
     btnRulesContainer.id = 'btn-rules-container';
@@ -192,17 +194,17 @@ class Game {
 
   }
 
-  cardLose (endOfGameContainer) {
+  cardAnimation (container, className) {
 
     const cardContainer = document.createElement('div');
     cardContainer.id = 'card-container';
-    endOfGameContainer.appendChild(cardContainer);
+    container.appendChild(cardContainer);
 
     for (let i = 0; i < 10; i++) {
 
       this.image = document.createElement('img');
-      this.image.src = cardLose;
-      this.image.className = 'card-lose';
+      this.image.src = cardBack;
+      this.image.classList.add(className);
       cardContainer.appendChild(this.image);
     }
   }
