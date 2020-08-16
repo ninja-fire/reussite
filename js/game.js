@@ -8,9 +8,9 @@ class Game {
 
   constructor(rootContainer) {
     this.rootContainer = rootContainer;
-    // this.intro();
-    this.init();
-    this.endOfGame();
+    this.intro();
+    // this.init();
+    // this.endOfGame();
 
   }
 
