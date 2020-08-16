@@ -2,20 +2,39 @@
 
 #deck-container {
 
+  align-items: center;
+  display: flex;
   height: 40%;
+  flex-direction: column;
+  justify-content: center;
   padding: 2em 1em;
   text-align: center;
 
-  img {
-    cursor: pointer;
+  #img-container {
+
+    border: 1px solid #D3D3D3;
+    border-radius: 12px;
+
+    img {
+      border-radius: 12px;
+      cursor: pointer;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      margin: 0.5em;
+
+
+    }
+
+    img:active {
+      box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
   }
 
   p {
-    color: #3D3C3C;
+    color: #4B5B92;
     font-family: Roboto, sans-serif;
     font-size: 2em;
     font-weight: 900;
-
+    padding: 0.5em;
   }
 }
 

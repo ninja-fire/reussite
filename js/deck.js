@@ -1,5 +1,5 @@
 import { Card } from '/js/card.js';
-import deckImg from '../image/deck.svg';
+import deckImg from '../image/cardBack.svg';
 
 class Deck {
 
@@ -14,9 +14,13 @@ class Deck {
     this.container.id = 'deck-container';
     this.rootContainer.appendChild(this.container);
 
+    const imgContainer = document.createElement('div');
+    imgContainer.id = 'img-container';
+    this.container.appendChild(imgContainer)
+
     this.image = document.createElement('img');
     this.image.src = deckImg;
-    this.container.appendChild(this.image);
+    imgContainer.appendChild(this.image);
 
     this.init();
     this.shuffle();

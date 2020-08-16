@@ -13,97 +13,12 @@
 
 }
 
-#intro-container {
-  display: flex;
-  flex-direction: column;
-
-  #welcome-container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding-top: 24em;
-    overflow-y: scroll;
-  }
-}
-
-#end-of-game-container {
-  display: flex;
-  flex-direction: column;
-
-  #btn-rules-container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding-top: 24em;
-    overflow-y: scroll;
-
-    #rules-container {
-
-      background: #F5F5F5;
-      box-shadow: inset 20px 20px 60px #d0d0d0,
-      inset -20px -20px 60px #ffffff;
-      border-radius: 14px;
-      margin-bottom: 2em;
-      overflow-y: scroll;
-      padding: 3em 2em;
-      width: 80%;
-
-      img {
-        display: flex;
-        width: 60%;
-        margin: auto;
-      }
-
-    }
-
-  }
-
-}
-
 //media query
 
 @media (max-width: $breakpoint-tablet) and (orientation: landscape) {
   #game-container {
     height: calc(100vh - 2em);
 
-  }
-
-  #intro-container {
-
-    flex-direction: row;
-    justify-content: flex-end;
-
-    #welcome-container {
-      overflow-y: visible;
-      padding-top: 2.5em;
-      width: 65%;
-
-    }
-  }
-
-  #end-of-game-container {
-
-    flex-direction: row;
-    justify-content: flex-end;
-
-    #btn-rules-container {
-      overflow-y: visible;
-      padding-top: 2.5em;
-      width: 65%;
-
-      #rules-container {
-        box-shadow: none;
-        overflow-y: visible;
-        padding: 0 2em;
-        width: 100%;
-
-        img {
-          width: 80%;
-        }
-
-      }
-
-    }
   }
   }
 
