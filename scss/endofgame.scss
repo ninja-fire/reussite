@@ -13,6 +13,14 @@
     padding-top: 24em;
     overflow-y: scroll;
 
+    .btn-b-container {
+      padding-bottom: 2em;
+    }
+
+    .btn-p-container {
+      padding-bottom: 2em;
+    }
+
     #rules-container {
 
       background: #F5F5F5;
@@ -23,6 +31,7 @@
       overflow-y: scroll;
       padding: 3em 2em;
       width: 80%;
+
 
       img {
         display: flex;

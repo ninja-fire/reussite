@@ -8,9 +8,9 @@ class Game {
 
   constructor(rootContainer) {
     this.rootContainer = rootContainer;
-    this.intro();
-    // this.init();
-    // this.endOfGame();
+    // this.intro();
+    this.init();
+    this.endOfGame();
 
   }
 
@@ -55,6 +55,10 @@ class Game {
     const buttonPink = document.createElement('button');
     btnPinkContainer.appendChild(buttonPink);
     buttonPink.innerText = `What is this game ?`;
+
+    buttonPink.addEventListener('click', () => {
+      this.rulesContainer(this.rootContainer, introContainer);
+    });
   }
 
   init() {
@@ -169,18 +173,9 @@ class Game {
     btnPinkContainer.appendChild(buttonPink);
     buttonPink.innerText = `What is this game ?`;
 
-    // const rulesContainer = document.createElement('div');
-    // rulesContainer.id = 'rules-container';
-    // btnRulesContainer.appendChild(rulesContainer);
-    //
-    // const rulesImgContainer = document.createElement('img');
-    // rulesImgContainer.id = 'rules-img-container';
-    // rulesImgContainer.src = rulesImg;
-    // rulesContainer.appendChild(rulesImgContainer);
-
-    // const cln = btnContainer.cloneNode(true);
-    // btnRulesContainer.appendChild(cln);
-
+    buttonPink.addEventListener('click', () => {
+      this.rulesContainer(this.rootContainer, endOfGameContainer);
+    })
 
     const buttons = btnRulesContainer.querySelectorAll('.btn-b-container > button');
     Array.from(buttons).forEach( (button) => {
@@ -207,6 +202,51 @@ class Game {
       this.image.classList.add(className);
       cardContainer.appendChild(this.image);
     }
+  }
+
+  rulesContainer(rootContainer, mainContainer) {
+
+    const rulesPopUpContainer = document.createElement('div');
+    rulesPopUpContainer.id = 'rules-popup-container';
+    rootContainer.appendChild(rulesPopUpContainer);
+
+    const rulesContainer = document.createElement('div');
+    rulesContainer.id = 'rules-container';
+    rulesPopUpContainer.appendChild(rulesContainer);
+
+    const crossContainer = document.createElement('div');
+    crossContainer.classList.add('cross-container');
+    rulesContainer.appendChild(crossContainer);
+
+    const crossBtn = document.createElement('button');
+    crossBtn.id = 'cross-btn';
+    crossContainer.appendChild(crossBtn);
+
+    crossBtn.addEventListener('click', () => {
+      rootContainer.removeChild(rulesPopUpContainer);
+    });
+
+    const rulesImgCtn = document.createElement('img');
+    rulesImgCtn.id = 'rules-img-container';
+    rulesImgCtn.src = rulesImg;
+    rulesContainer.appendChild(rulesImgCtn);
+
+    const btnBlueContainer = document.createElement('div');
+    btnBlueContainer.classList.add('btn-b-container');
+    rulesContainer.appendChild(btnBlueContainer);
+
+    const btnIntro = document.createElement('button');
+    btnIntro.id = 'btn-intro';
+    btnIntro.innerText = `Let’s start a new game !`;
+    btnBlueContainer.appendChild(btnIntro);
+
+    btnIntro.addEventListener('click', () => {
+      rootContainer.removeChild(rulesPopUpContainer);
+      rootContainer.removeChild(mainContainer);
+      this.init();
+    });
+
+
   }
 
   toJson() {
