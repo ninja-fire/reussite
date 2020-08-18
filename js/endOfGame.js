@@ -8,7 +8,7 @@ class EndOfGame {
 
   }
 
-  init (onStart) {
+  init (isWinner, onStart) {
 
     this.container = document.createElement('div');
     this.container.id = 'end-of-game-container';
@@ -28,7 +28,7 @@ class EndOfGame {
     btnRulesContainer.appendChild(statusContainer);
 
     const paraStatus = document.createElement('p');
-    const status = this.win ? 'Congratulations' : `Don't give up!`;
+    const status = isWinner ? 'Congratulations' : `Don't give up!`;
     paraStatus.innerText = `${status}`;
     statusContainer.appendChild(paraStatus);
 

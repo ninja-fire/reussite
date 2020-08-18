@@ -17,7 +17,7 @@ class Game {
     this.rootContainer.appendChild(this.container);
 
     this.isEndOfGame = false;
-    this.win = false;
+
     this.onEnd = onEnd;
 
     this.deck = new Deck(this.container, () => this.pickCard());
@@ -40,7 +40,7 @@ class Game {
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
           this.isEndOfGame = true;
           this.destroy();
-          this.onEnd();
+          this.onEnd(false);
 
           console.log('Lose');
         }
@@ -64,10 +64,9 @@ class Game {
         if (this.board.isWinSize() && this.deck.empty() ) {
 
           this.isEndOfGame = true;
-          this.win = true;
           console.log('Win');
           this.destroy();
-          this.onEnd();
+          this.onEnd(true);
 
         } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne() ) {
 
@@ -75,7 +74,7 @@ class Game {
 
           console.log('Lose');
           this.destroy();
-          this.onEnd();
+          this.onEnd(false);
 
 
         }
@@ -102,7 +101,6 @@ class Game {
     return {
       deck: this.deck.toJson(),
       endOfGame: this.isEndOfGame,
-      win: this.win,
       board: this.board.toJson()
     };
 
