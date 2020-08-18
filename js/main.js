@@ -1,8 +1,10 @@
-import { Game } from '/js/game.js';
+import { GameState } from '/js/gameState.js';
+import '../scss/main.scss'
 
 function init () {
+
   const rootContainer = document.getElementById('root-container');
-  new Game(rootContainer);
+  new GameState(rootContainer);
 }
 
 init();

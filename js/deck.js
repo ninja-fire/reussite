@@ -1,4 +1,5 @@
 import { Card } from '/js/card.js';
+import deckImg from '../image/cardBack.svg';
 
 class Deck {
 
@@ -12,13 +13,19 @@ class Deck {
     this.container = document.createElement('div');
     this.container.id = 'deck-container';
     this.rootContainer.appendChild(this.container);
-    this.button = document.createElement('button');
-    this.container.appendChild(this.button);
-    this.button.innerText = 'DECK';
+
+    const imgContainer = document.createElement('div');
+    imgContainer.id = 'img-container';
+    this.container.appendChild(imgContainer)
+
+    this.image = document.createElement('img');
+    this.image.src = deckImg;
+    imgContainer.appendChild(this.image);
+
     this.init();
     this.shuffle();
-    this.button.addEventListener('click', this.onPickCard);
-    this.counter = document.createElement('div');
+    this.image.addEventListener('click', this.onPickCard);
+    this.counter = document.createElement('p');
     this.container.appendChild(this.counter);
     this.counter.innerText = `${this.stack.length}`;
   }

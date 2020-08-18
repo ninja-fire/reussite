@@ -1,0 +1,44 @@
+@import "board";
+@import "deck";
+
+//Style
+#intro-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+  #welcome-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 24em;
+    //overflow-y: scroll;
+
+    .btn-b-container {
+      padding-bottom: 2em;
+    }
+
+    .btn-p-container {
+      padding-bottom: 2em;
+    }
+  }
+}
+//Style
+
+//Media query
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+  #intro-container {
+
+    flex-direction: row;
+    justify-content: flex-end;
+
+    #welcome-container {
+      overflow-y: visible;
+      padding-top: 2.5em;
+      width: 65%;
+
+    }
+  }
+}
+//Media query

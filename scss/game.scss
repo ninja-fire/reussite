@@ -1,0 +1,96 @@
+@import "board";
+@import "deck";
+
+// COLORS
+$softorange: #F4A259;
+$tomatored: #F25C66;
+$mediumblu: #1E272D;
+
+#game-container {
+  background-color: #F5F5F5;
+  border-radius: 20px;
+  box-sizing: content-box;
+  box-shadow: 20px 20px 60px #cccccc,
+  -20px -20px 60px #ffffff;
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 4em);
+
+}
+
+#rules-popup-container {
+  align-items: center;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  #rules-container {
+    background-color: #F5F5F5;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    border-bottom: 0.8em solid #F5F5F5;
+    border-top: 0.8em solid #F5F5F5;
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    padding: 0.1em 1em;
+    width: 55%;
+
+    .btn-b-container {
+      position: sticky;
+      bottom: 1px;
+      padding-top: 1.5em;
+    }
+
+    .cross-container {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 1em;
+      position: sticky;
+      top: 1px;
+
+      #cross-btn {
+        align-self: flex-end;
+        background-image: url('../image/cross.svg');
+        background-color: transparent;
+        border: none;
+        color: transparent;
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+        outline: none !important;
+      }
+    }
+
+    overflow-y: scroll;
+  }
+}
+
+
+//media query
+
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+  #game-container {
+    height: calc(100vh - 2em);
+
+  }
+
+  #rules-popup-container {
+
+    #rules-container {
+      height: 95%;
+      width: 98%;
+    }
+  }
+
+  }
+
+
+//media query

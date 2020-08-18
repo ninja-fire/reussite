@@ -1,0 +1,76 @@
+@import "board";
+@import "deck";
+
+//Style
+#end-of-game-container {
+  display: flex;
+  flex-direction: column;
+
+  #btn-rules-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 24em;
+    overflow-y: scroll;
+
+    .btn-b-container {
+      padding-bottom: 2em;
+    }
+
+    .btn-p-container {
+      padding-bottom: 2em;
+    }
+
+    #rules-container {
+
+      background: #F5F5F5;
+      box-shadow: inset 20px 20px 60px #d0d0d0,
+      inset -20px -20px 60px #ffffff;
+      border-radius: 14px;
+      margin-bottom: 2em;
+      overflow-y: scroll;
+      padding: 3em 2em;
+      width: 80%;
+
+
+      img {
+        display: flex;
+        width: 60%;
+        margin: auto;
+      }
+
+    }
+
+  }
+
+}
+//Style
+
+//Media query
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+  #end-of-game-container {
+
+    flex-direction: row;
+    justify-content: flex-end;
+
+    #btn-rules-container {
+      overflow-y: visible;
+      padding-top: 2.5em;
+      width: 65%;
+
+      #rules-container {
+        box-shadow: none;
+        overflow-y: visible;
+        padding: 0 2em;
+        width: 100%;
+
+        img {
+          width: 80%;
+        }
+
+      }
+
+    }
+  }
+}
+//Media query

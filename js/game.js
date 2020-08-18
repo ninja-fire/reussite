@@ -4,19 +4,24 @@ import { Board } from '/js/board.js';
 class Game {
 
   constructor(rootContainer) {
+
     this.rootContainer = rootContainer;
+
     this.container = document.createElement('div');
     this.container.id = 'game-container';
-    this.rootContainer.appendChild(this.container);
-    this.init();
 
   }
 
-  init() {
+  init (onEnd) {
+
+    this.rootContainer.appendChild(this.container);
 
     this.isEndOfGame = false;
     this.win = false;
-    this.deck = new Deck(this.container, () => this.pickCard() );
+    this.onEnd = onEnd;
+
+    this.deck = new Deck(this.container, () => this.pickCard());
+
     this.board = new Board(this.container, (card) => this.moveCard(card) );
 
   }
@@ -34,6 +39,9 @@ class Game {
 
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
           this.isEndOfGame = true;
+          this.destroy();
+          this.onEnd();
+
           console.log('Lose');
         }
         return true;
@@ -58,14 +66,17 @@ class Game {
           this.isEndOfGame = true;
           this.win = true;
           console.log('Win');
-          this.endOfGame();
+          this.destroy();
+          this.onEnd();
 
         } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne() ) {
 
           this.isEndOfGame = true;
 
           console.log('Lose');
-          this.endOfGame();
+          this.destroy();
+          this.onEnd();
+
 
         }
 
@@ -76,20 +87,13 @@ class Game {
     return false;
   }
 
-  endOfGame (){
+  destroy () {
 
     this.board.destroy();
     this.deck.destroy();
     this.board = null;
     this.deck = null;
-    const button = document.createElement('button');
-    this.container.appendChild(button);
-    const status = this.win ? 'Congrats' : 'Boooooouh';
-    button.innerText = `${status}, start new game`;
-    button.addEventListener('click', () => {
-      this.container.removeChild(button);
-      this.init();
-    });
+    this.rootContainer.removeChild(this.container);
 
   }
 

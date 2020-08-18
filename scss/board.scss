@@ -1,0 +1,26 @@
+#board-container {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+  padding: 1em;
+  overflow: scroll;
+
+  .card-container {
+    cursor: pointer;
+    padding: 1em;
+
+    svg{
+      border-radius: 12px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      height: 150px;
+      width: 85px;
+    }
+
+    svg:active {
+      box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
