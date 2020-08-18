@@ -1,5 +1,5 @@
 import { CardAnimation } from '/js/cardAnimation';
-import { RulesContainer } from "./rulesContainer";
+import { Rules } from "./rules";
 
 class EndOfGame {
 
@@ -15,7 +15,7 @@ class EndOfGame {
     this.rootContainer.appendChild(this.container);
 
     this.cardAnimation = new CardAnimation(this.container, 'card-lose');
-    this.rulesContainer = new RulesContainer(this.rootContainer);
+    this.rulesContainer = new Rules(this.rootContainer);
 
     this.cardAnimation.init();
 
@@ -51,7 +51,7 @@ class EndOfGame {
     buttonPink.addEventListener('click', () => {
 
       this.rulesContainer.init(() => {
-        this.rootContainer.removeChild(this.container);
+        this.destroy();
         onStart();
       });
 
@@ -59,11 +59,23 @@ class EndOfGame {
 
     buttonBlue.addEventListener('click', () => {
 
-      this.rootContainer.removeChild(this.container);
+      this.destroy();
       onStart();
 
       });
   }
+
+  destroy(){
+
+    this.cardAnimation.destroy();
+    this.rulesContainer.destroy();
+    this.cardAnimation = null;
+    this.rulesContainer = null;
+    this.rootContainer.removeChild(this.container);
+    this.container = null;
+
+  }
+
 }
 
 export { EndOfGame };

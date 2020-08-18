@@ -7,13 +7,12 @@ class Game {
 
     this.rootContainer = rootContainer;
 
-    this.container = document.createElement('div');
-    this.container.id = 'game-container';
-
   }
 
   init (onEnd) {
 
+    this.container = document.createElement('div');
+    this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
 
     this.isEndOfGame = false;
@@ -93,6 +92,7 @@ class Game {
     this.board = null;
     this.deck = null;
     this.rootContainer.removeChild(this.container);
+    this.container = null;
 
   }
 

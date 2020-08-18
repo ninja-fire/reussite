@@ -22,6 +22,7 @@ class GameState {
   start () {
 
     this.game.init((isWinner) => this.end(isWinner));
+
   }
 
   end (isWinner) {
