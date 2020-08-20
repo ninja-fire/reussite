@@ -1,7 +1,7 @@
 # Réussite card game
 
 🃏🃏 Réussite is a card game for single player adapted to mobile and computer devices. 🃏🃏  
-reussite.netlify.app/
+https://reussite.netlify.app/
 
 ## Rules
 
