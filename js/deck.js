@@ -24,6 +24,7 @@ class Deck {
 
     this.init();
     this.shuffle();
+
     this.image.addEventListener('click', this.onPickCard);
     this.counter = document.createElement('p');
     this.container.appendChild(this.counter);

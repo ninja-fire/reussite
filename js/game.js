@@ -34,6 +34,7 @@ class Game {
       if (pickedCard) {
 
         this.board.addCard(pickedCard);
+        // this.soundPlay();
         console.log(this.toJson());
 
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
@@ -95,6 +96,12 @@ class Game {
     this.container = null;
 
   }
+
+  // soundPlay () {
+  //   const audio = new Audio('../sound/card.mp4');
+  //   audio.play();
+  //
+  // }
 
   toJson() {
 
