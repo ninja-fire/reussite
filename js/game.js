@@ -1,5 +1,6 @@
 import { Deck } from '/js/deck.js';
 import { Board } from '/js/board.js';
+import { ControlPanel } from '/js/controlPanel.js';
 import cardSound from '/sound/card.mp3'
 
 class Game {
@@ -16,11 +17,19 @@ class Game {
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
 
+    this.deckCtrlContainer = document.createElement('div');
+    this.deckCtrlContainer.id = 'deck-ctrl-container';
+    this.container.appendChild(this.deckCtrlContainer);
+
     this.isEndOfGame = false;
 
     this.onEnd = onEnd;
 
-    this.deck = new Deck(this.container, () => this.pickCard());
+    this.deck = new Deck(this.deckCtrlContainer, () => this.pickCard());
+    this.controlPanel = new ControlPanel(this.deckCtrlContainer);
+    this.controlPanel.muteTrack();
+
+    // this.control();
 
     this.board = new Board(this.container, (card) => this.moveCard(card) );
 

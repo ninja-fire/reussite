@@ -2,9 +2,6 @@
 @import "deck";
 
 // COLORS
-$softorange: #F4A259;
-$tomatored: #F25C66;
-$mediumblu: #1E272D;
 
 #game-container {
   background-color: #F5F5F5;
@@ -15,6 +12,46 @@ $mediumblu: #1E272D;
   display: flex;
   flex-direction: row;
   height: calc(100vh - 4em);
+
+  #ctrl-container {
+    display: flex;
+    flex-direction: column;
+
+    #mute-container {
+      padding: 1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      #mute-btn {
+        background-image: url('/image/sound-on.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        cursor: pointer;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        box-shadow: 20px 20px 60px #d0d0d0,
+        -20px -20px 60px #ffffff;
+        outline: none !important;
+
+        &.off {
+          background-image: url('/image/sound-off.svg');
+          box-shadow: inset 2px 2px 6px #d0d0d0,
+          inset -2px -2px 6px #ffffff;
+        }
+
+      }
+
+    }
+
+    .btn-b-container {
+      button {
+        padding: 0.5em 2.5em;
+      }
+    }
+  }
 
 }
 
