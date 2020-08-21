@@ -1,5 +1,6 @@
 import { Deck } from '/js/deck.js';
 import { Board } from '/js/board.js';
+import cardSound from '/sound/card.mp3'
 
 class Game {
 
@@ -34,7 +35,7 @@ class Game {
       if (pickedCard) {
 
         this.board.addCard(pickedCard);
-        // this.soundPlay();
+        this.soundPlay();
         console.log(this.toJson());
 
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
@@ -97,11 +98,25 @@ class Game {
 
   }
 
-  // soundPlay () {
-  //   const audio = new Audio('../sound/card.mp4');
-  //   audio.play();
-  //
-  // }
+  soundPlay () {
+
+    // const audio = new Audio('sound/card.mp3');
+    const audio = document.createElement('audio');
+    audio.src = cardSound;
+    this.container.appendChild(audio);
+
+    audio.play()
+      .then(() => {
+        console.log('sound on');
+        audio.addEventListener('ended', () => {
+          this.container.removeChild(audio);
+          console.log('sound off');
+        })
+      }).catch((error) => {
+      console.error(error);
+    });
+
+  }
 
   toJson() {
 
