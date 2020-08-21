@@ -33,7 +33,7 @@ class Intro {
     statusContainer.appendChild(paraStatus);
 
     const btnBlueContainer = document.createElement('div');
-    btnBlueContainer.classList.add('btn-b-container');
+    btnBlueContainer.classList.add('btn-container', 'play');
     welcomeContainer.appendChild(btnBlueContainer);
 
     const btnBlue = document.createElement('button');
@@ -47,7 +47,7 @@ class Intro {
     });
 
     const btnPinkContainer = document.createElement('div');
-    btnPinkContainer.classList.add('btn-p-container');
+    btnPinkContainer.classList.add('btn-container', 'rules');
     welcomeContainer.appendChild(btnPinkContainer);
 
     const buttonPink = document.createElement('button');

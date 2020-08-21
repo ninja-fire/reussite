@@ -1,0 +1,43 @@
+body {
+
+  #ctrl-container {
+    display: flex;
+    flex-direction: column;
+
+    #mute-container {
+      padding: 1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      #mute-btn {
+        background-image: url('/image/sound-on.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 0.1em solid #F1F0F0;
+        cursor: pointer;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        box-shadow: 20px 20px 60px #d0d0d0,
+        -20px -20px 60px #ffffff;
+        outline: none !important;
+
+        &.off {
+          background-image: url('/image/sound-off.svg');
+          box-shadow: inset 2px 2px 6px #d0d0d0,
+          inset -2px -2px 6px #ffffff;
+        }
+
+      }
+
+    }
+
+    .btn-container {
+      button {
+        padding: 0.5em 2.5em;
+      }
+    }
+  }
+
+}

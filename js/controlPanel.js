@@ -22,20 +22,23 @@ class ControlPanel {
     muteContainer.appendChild(this.muteBtn);
 
     const btnBlueContainer = document.createElement('div');
-    btnBlueContainer.classList.add('btn-b-container');
+    btnBlueContainer.classList.add('btn-container', 'warning');
     this.container.appendChild(btnBlueContainer);
 
-    const btnBlue = document.createElement('button');
-    btnBlue.innerText = `Reset`;
-    btnBlueContainer.appendChild(btnBlue);
+    this.btnBlue = document.createElement('button');
+    this.btnBlue.innerText = `Reset`;
+    btnBlueContainer.appendChild(this.btnBlue);
 
     this.track = document.createElement('audio');
     this.track.src = alkemist;
-    this.rootContainer.appendChild( this.track);
+    this.rootContainer.appendChild(this.track);
+
+    this.loadTrack();
+    this.btnBlue.addEventListener('click', () => this.onReset() );
 
   }
 
-  muteTrack () {
+  loadTrack () {
 
     this.track.play()
       .then(() => {
@@ -54,6 +57,29 @@ class ControlPanel {
       }).catch((error) => {
       console.error(error);
     });
+  }
+
+  onReset () {
+
+      const validationPopup = document.createElement('div');
+      validationPopup.classList.add('popup-container');
+      validationPopup.id = 'validation-container';
+      this.rootContainer.appendChild(validationPopup);
+
+      const validationContainer = document.createElement('div');
+      validationContainer.classList.add('popup');
+      validationPopup.appendChild(validationContainer);
+
+      const crossContainer = document.createElement('div');
+      crossContainer.classList.add('cross-container');
+      validationContainer.appendChild(crossContainer);
+
+      const crossBtn = document.createElement('button');
+      crossContainer.appendChild(crossBtn);
+      crossBtn.addEventListener('click', () => {
+        this.rootContainer.removeChild(validationPopup);
+      });
+
   }
 
 }

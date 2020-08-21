@@ -16,6 +16,26 @@ body {
 
   }
 
+  .cross-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1em;
+    position: sticky;
+    top: 1px;
+
+    button {
+      align-self: flex-end;
+      background-image: url('../image/cross.svg');
+      background-color: transparent;
+      border: none;
+      color: transparent;
+      cursor: pointer;
+      height: 25px;
+      width: 25px;
+      outline: none !important;
+    }
+  }
+
   .status-container {
     color: #4B5B92;
     font-family: 'Hammersmith One', sans-serif;
@@ -23,57 +43,6 @@ body {
     letter-spacing: 0.1em;
     padding: 1em;
     text-transform: uppercase;
-  }
-
-  .btn-b-container {
-
-    //padding-bottom: 2em;
-    align-self: center;
-
-    button {
-      background: #8CA4F8;
-      border: 2px solid #FFFFFF;
-      box-sizing: border-box;
-      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 12px;
-      color: white;
-      font-family: 'Hammersmith One', sans-serif;
-      font-size: 1em;
-      padding: 1em 4em;
-      cursor: pointer;
-      outline: none !important;
-
-    }
-
-    button:active {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    }
-
-  }
-
-  .btn-p-container {
-
-    //padding-bottom: 2em;
-    align-self: center;
-
-
-    button {
-      background: #F8D7D7;
-      border: 2px solid #FFFFFF;
-      box-sizing: border-box;
-      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 12px;
-      color: white;
-      font-family: 'Hammersmith One', sans-serif;
-      font-size: 1em;
-      padding: 1em 5em;
-      cursor: pointer;
-      outline: none !important;
-    }
-
-    button:active {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    }
   }
 
   #card-container {

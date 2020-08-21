@@ -27,9 +27,8 @@ class Game {
 
     this.deck = new Deck(this.deckCtrlContainer, () => this.pickCard());
     this.controlPanel = new ControlPanel(this.deckCtrlContainer);
-    this.controlPanel.muteTrack();
-
-    // this.control();
+    // this.controlPanel.loadTrack();
+    // this.controlPanel.reset(this.rootContainer);
 
     this.board = new Board(this.container, (card) => this.moveCard(card) );
 
@@ -109,7 +108,6 @@ class Game {
 
   soundPlay () {
 
-    // const audio = new Audio('sound/card.mp3');
     const audio = document.createElement('audio');
     audio.src = cardSound;
     this.container.appendChild(audio);

@@ -10,11 +10,12 @@ class Rules {
   init (onStart) {
 
     this.container = document.createElement('div');
-    this.container.id = 'rules-popup-container';
+    this.container.id = 'rules-container'
+    this.container.classList.add('popup-container');
     this.rootContainer.appendChild(this.container);
 
     const rulesContainer = document.createElement('div');
-    rulesContainer.id = 'rules-container';
+    rulesContainer.classList.add('popup');
     this.container.appendChild(rulesContainer);
 
     const crossContainer = document.createElement('div');
@@ -22,9 +23,7 @@ class Rules {
     rulesContainer.appendChild(crossContainer);
 
     const crossBtn = document.createElement('button');
-    crossBtn.id = 'cross-btn';
     crossContainer.appendChild(crossBtn);
-
     crossBtn.addEventListener('click', () => {
       this.destroy();
     });
@@ -35,7 +34,7 @@ class Rules {
     rulesContainer.appendChild(rulesImgCtn);
 
     const btnBlueContainer = document.createElement('div');
-    btnBlueContainer.classList.add('btn-b-container');
+    btnBlueContainer.classList.add('btn-container', 'play');
     rulesContainer.appendChild(btnBlueContainer);
 
     const btnBlue = document.createElement('button');
