@@ -50,6 +50,7 @@ class Board {
   destroy() {
     this.cards = [];
     this.rootContainer.removeChild(this.container);
+    this.container.innerHTML = '';
   }
 
   toJson() {

@@ -1,5 +1,5 @@
 import { CardAnimation } from '/js/cardAnimation';
-import { RulesContainer } from '/js/rulesContainer';
+import { Rules } from '/js/rules';
 
 class Intro {
 
@@ -15,8 +15,8 @@ class Intro {
     this.container.id = 'intro-container';
     this.rootContainer.appendChild(this.container);
 
-    this.cardAnimation = new CardAnimation (this.container, 'card-welcome');
-    this.rulesContainer = new RulesContainer (this.rootContainer);
+    this.cardAnimation = new CardAnimation(this.container, 'card-welcome');
+    this.rulesContainer = new Rules(this.rootContainer);
 
     this.cardAnimation.init();
 
@@ -42,7 +42,7 @@ class Intro {
     btnBlueContainer.appendChild(btnBlue);
 
     btnBlue.addEventListener('click', () => {
-      this.rootContainer.removeChild(this.container);
+      this.destroy();
       onStart();
     });
 
@@ -57,11 +57,22 @@ class Intro {
     buttonPink.addEventListener('click', () => {
 
       this.rulesContainer.init(() => {
-        this.rootContainer.removeChild(this.container);
+        this.destroy();
         onStart();
       });
 
     });
+  }
+
+  destroy(){
+
+    this.cardAnimation.destroy();
+    this.rulesContainer.destroy();
+    this.cardAnimation = null;
+    this.rulesContainer = null;
+    this.rootContainer.removeChild(this.container);
+    this.container = null;
+
   }
 
 }

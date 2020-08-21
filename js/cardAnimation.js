@@ -2,25 +2,35 @@ import cardBack from "../image/cardBack.svg";
 
 class CardAnimation {
 
-  constructor (container, className) {
-    this.container = container;
+  constructor (rootContainer, className) {
+
+    this.rootContainer = rootContainer;
     this.className = className;
 
   }
 
   init () {
 
-    this.cardContainer = document.createElement('div');
-    this.cardContainer.id = 'card-container';
-    this.container.appendChild(this.cardContainer);
+    this.container = document.createElement('div');
+    this.container.id = 'card-container';
+    this.rootContainer.appendChild(this.container);
 
     for (let i = 0; i < 10; i++) {
 
-      this.image = document.createElement('img');
-      this.image.src = cardBack;
-      this.image.classList.add(this.className);
-      this.cardContainer.appendChild(this.image);
+      const image = document.createElement('img');
+      image.src = cardBack;
+      image.classList.add(this.className);
+      this.container.appendChild(image);
+
     }
+
+  }
+
+  destroy(){
+
+    this.rootContainer.removeChild(this.container);
+    this.container = null;
+
   }
 
 }

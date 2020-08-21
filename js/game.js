@@ -1,5 +1,6 @@
 import { Deck } from '/js/deck.js';
 import { Board } from '/js/board.js';
+import cardSound from '/sound/card.mp3'
 
 class Game {
 
@@ -7,17 +8,16 @@ class Game {
 
     this.rootContainer = rootContainer;
 
-    this.container = document.createElement('div');
-    this.container.id = 'game-container';
-
   }
 
   init (onEnd) {
 
+    this.container = document.createElement('div');
+    this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
 
     this.isEndOfGame = false;
-    this.win = false;
+
     this.onEnd = onEnd;
 
     this.deck = new Deck(this.container, () => this.pickCard());
@@ -35,12 +35,13 @@ class Game {
       if (pickedCard) {
 
         this.board.addCard(pickedCard);
+        this.soundPlay();
         console.log(this.toJson());
 
         if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
           this.isEndOfGame = true;
           this.destroy();
-          this.onEnd();
+          this.onEnd(false);
 
           console.log('Lose');
         }
@@ -64,10 +65,9 @@ class Game {
         if (this.board.isWinSize() && this.deck.empty() ) {
 
           this.isEndOfGame = true;
-          this.win = true;
           console.log('Win');
           this.destroy();
-          this.onEnd();
+          this.onEnd(true);
 
         } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne() ) {
 
@@ -75,7 +75,7 @@ class Game {
 
           console.log('Lose');
           this.destroy();
-          this.onEnd();
+          this.onEnd(false);
 
 
         }
@@ -94,6 +94,27 @@ class Game {
     this.board = null;
     this.deck = null;
     this.rootContainer.removeChild(this.container);
+    this.container = null;
+
+  }
+
+  soundPlay () {
+
+    // const audio = new Audio('sound/card.mp3');
+    const audio = document.createElement('audio');
+    audio.src = cardSound;
+    this.container.appendChild(audio);
+
+    audio.play()
+      .then(() => {
+        console.log('sound on');
+        audio.addEventListener('ended', () => {
+          this.container.removeChild(audio);
+          console.log('sound off');
+        })
+      }).catch((error) => {
+      console.error(error);
+    });
 
   }
 
@@ -102,7 +123,6 @@ class Game {
     return {
       deck: this.deck.toJson(),
       endOfGame: this.isEndOfGame,
-      win: this.win,
       board: this.board.toJson()
     };
 

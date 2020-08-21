@@ -16,7 +16,7 @@ class Deck {
 
     const imgContainer = document.createElement('div');
     imgContainer.id = 'img-container';
-    this.container.appendChild(imgContainer)
+    this.container.appendChild(imgContainer);
 
     this.image = document.createElement('img');
     this.image.src = deckImg;
@@ -24,6 +24,7 @@ class Deck {
 
     this.init();
     this.shuffle();
+
     this.image.addEventListener('click', this.onPickCard);
     this.counter = document.createElement('p');
     this.container.appendChild(this.counter);
@@ -68,6 +69,7 @@ class Deck {
 
   destroy() {
     this.stack = [];
+    this.container.innerHTML = '';
     this.rootContainer.removeChild(this.container);
   }
 

@@ -1,13 +1,13 @@
 import rulesImg from "../image/rules.svg";
 
-class RulesContainer {
+class Rules {
 
   constructor (rootContainer) {
     this.rootContainer = rootContainer;
 
   }
 
-  init () {
+  init (onStart) {
 
     this.container = document.createElement('div');
     this.container.id = 'rules-popup-container';
@@ -26,7 +26,7 @@ class RulesContainer {
     crossContainer.appendChild(crossBtn);
 
     crossBtn.addEventListener('click', () => {
-      this.rootContainer.removeChild(this.container);
+      this.destroy();
     });
 
     const rulesImgCtn = document.createElement('img');
@@ -44,10 +44,23 @@ class RulesContainer {
     btnBlueContainer.appendChild(btnBlue);
 
     btnBlue.addEventListener('click', () => {
-      this.rootContainer.removeChild(this.container);
-      // this.rootContainer.removeChild(container);
+      this.destroy();
+      onStart();
     });
   }
+
+
+  destroy(){
+
+    if(this.container){
+
+      this.rootContainer.removeChild(this.container);
+      this.container = null;
+
+    }
+
+  }
+
 }
 
-export { RulesContainer };
+export { Rules };

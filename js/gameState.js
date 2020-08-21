@@ -21,11 +21,12 @@ class GameState {
 
   start () {
 
-    this.game.init(() => this.end());
+    this.game.init((isWinner) => this.end(isWinner));
+
   }
 
-  end () {
-    this.endOfGame.init(() => this.start());
+  end (isWinner) {
+    this.endOfGame.init(isWinner, () => this.start());
   }
 }
 
