@@ -92,6 +92,7 @@ class Game {
     }
     console.log('You can not move');
     return false;
+
   }
 
   destroy() {

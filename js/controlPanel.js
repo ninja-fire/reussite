@@ -11,6 +11,7 @@ class ControlPanel {
     this.reset = reset;
 
     this.init();
+
   }
 
   init() {
