@@ -1,6 +1,6 @@
-import { Deck } from '/js/deck.js';
-import { Board } from '/js/board.js';
-import { ControlPanel } from '/js/controlPanel.js';
+import {Deck} from '/js/deck.js';
+import {Board} from '/js/board.js';
+import {ControlPanel} from '/js/controlPanel.js';
 import cardSound from '/sound/card.mp3'
 
 class Game {
@@ -11,7 +11,7 @@ class Game {
 
   }
 
-  init (onEnd) {
+  init(onEnd) {
 
     this.container = document.createElement('div');
     this.container.id = 'game-container';
@@ -26,11 +26,10 @@ class Game {
     this.onEnd = onEnd;
 
     this.deck = new Deck(this.deckCtrlContainer, () => this.pickCard());
-    this.controlPanel = new ControlPanel(this.deckCtrlContainer);
-    // this.controlPanel.loadTrack();
-    // this.controlPanel.reset(this.rootContainer);
 
-    this.board = new Board(this.container, (card) => this.moveCard(card) );
+    this.controlPanel = new ControlPanel(this.deckCtrlContainer, () => this.reset());
+
+    this.board = new Board(this.container, (card) => this.moveCard(card));
 
   }
 
@@ -46,7 +45,7 @@ class Game {
         this.soundPlay();
         console.log(this.toJson());
 
-        if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
+        if (this.deck.empty() && !this.board.canMoveAtLeastOne()) {
           this.isEndOfGame = true;
           this.destroy();
           this.onEnd(false);
@@ -68,16 +67,16 @@ class Game {
       if (this.board.canMove(card)) {
 
         this.board.suppPreviousCard(card);
-        console.log(this.toJson() );
+        console.log(this.toJson());
 
-        if (this.board.isWinSize() && this.deck.empty() ) {
+        if (this.board.isWinSize() && this.deck.empty()) {
 
           this.isEndOfGame = true;
           console.log('Win');
           this.destroy();
           this.onEnd(true);
 
-        } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne() ) {
+        } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne()) {
 
           this.isEndOfGame = true;
 
@@ -95,7 +94,7 @@ class Game {
     return false;
   }
 
-  destroy () {
+  destroy() {
 
     this.board.destroy();
     this.deck.destroy();
@@ -106,7 +105,7 @@ class Game {
 
   }
 
-  soundPlay () {
+  soundPlay() {
 
     const audio = document.createElement('audio');
     audio.src = cardSound;
@@ -125,6 +124,11 @@ class Game {
 
   }
 
+  reset() {
+    this.destroy();
+    this.init();
+  }
+
   toJson() {
 
     return {
@@ -137,4 +141,4 @@ class Game {
 
 }
 
-export { Game };
+export {Game};
