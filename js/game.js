@@ -82,8 +82,8 @@ class Game {
 
           console.log('Lose');
           this.destroy();
+          debugger;
           this.onEnd(false);
-
 
         }
 
@@ -126,8 +126,10 @@ class Game {
   }
 
   reset() {
+
     this.destroy();
-    this.init();
+    this.init(this.onEnd);
+
   }
 
   toJson() {
