@@ -1,4 +1,5 @@
 import alkemist from "../sound/alkemist.mp3";
+import {Rules} from "./rules";
 
 class ControlPanel {
 
@@ -31,6 +32,14 @@ class ControlPanel {
     this.btnWarning = document.createElement('button');
     this.btnWarning.innerText = `Reset`;
     btnWarningContainer.appendChild(this.btnWarning);
+
+    const btnRulesContainer = document.createElement('div');
+    btnRulesContainer.classList.add('btn-container', 'rules');
+    this.container.appendChild(btnRulesContainer);
+
+    this.btnRules = document.createElement('button');
+    this.btnRules.innerText = `Rules`;
+    btnRulesContainer.appendChild(this.btnRules);
 
     this.track = document.createElement('audio');
     this.track.src = alkemist;
