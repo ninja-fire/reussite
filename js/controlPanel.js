@@ -25,6 +25,22 @@ class ControlPanel {
     this.muteBtn.id = 'mute-btn';
     muteContainer.appendChild(this.muteBtn);
 
+    const artistContainer = document.createElement('div');
+    artistContainer.id = 'artist-container';
+    this.container.appendChild(artistContainer);
+
+    const artistPara = document.createElement('p');
+    artistPara.id = 'artist-para';
+    artistPara.innerText = `Discover `;
+    artistContainer.appendChild(artistPara);
+
+    const artistLink = document.createElement('a');
+    artistLink.id = 'artist-link';
+    artistLink.href = 'https://soundcloud.com/alkemist-dub/tracks';
+    artistLink.target = 'blank';
+    artistLink.innerHTML = `Alkemist`;
+    artistPara.appendChild(artistLink);
+
     const btnWarningContainer = document.createElement('div');
     btnWarningContainer.classList.add('btn-container', 'warning');
     this.container.appendChild(btnWarningContainer);
