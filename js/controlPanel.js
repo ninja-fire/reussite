@@ -57,6 +57,16 @@ class ControlPanel {
     this.btnRules.innerText = `Rules`;
     btnRulesContainer.appendChild(this.btnRules);
 
+    const githubContainer = document.createElement('div');
+    githubContainer.id = 'github-container';
+    this.container.appendChild(githubContainer);
+
+    const githubLink = document.createElement('a');
+    githubLink.id = 'github-link';
+    githubLink.href = 'https://github.com/ninja-fire/reussite';
+    githubLink.target = 'blank';
+    githubContainer.appendChild(githubLink);
+
     this.track = document.createElement('audio');
     this.track.src = alkemist;
     this.rootContainer.appendChild(this.track);
