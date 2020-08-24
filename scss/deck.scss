@@ -43,8 +43,16 @@ $breakpoint-tablet: 960px;
 
 @media (max-width: $breakpoint-tablet) {
   #deck-container {
-    height: 100%;
-    padding: 1em 1em;
+    height: 80%;
+    padding: 0;
+
+    img {
+      height: 12em;
+    }
+
+    p {
+      padding: 0.2em;
+    }
 
   }
 

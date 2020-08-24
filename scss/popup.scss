@@ -1,3 +1,4 @@
+//Style
 .popup-container {
   align-items: center;
   backdrop-filter: blur(6px);
@@ -20,11 +21,27 @@
   border-bottom: 0.8em solid #F5F5F5;
   border-top: 0.8em solid #F5F5F5;
   display: flex;
-  height: 90%;
+  height: 80%;
   flex-direction: column;
   padding: 0.1em 1em;
-  width: 55%;
+  width: 60%;
   overflow-y: scroll;
 
+}
+//Style
+
+//Media Query
+$breakpoint-tablet: 960px;
+
+@media (max-width: $breakpoint-tablet) {
+
+  body {
+    .popup {
+      height: 95%;
+      width: 98%;
+
+    }
+  }
 
 }
+//Media Query

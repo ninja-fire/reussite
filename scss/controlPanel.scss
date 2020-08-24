@@ -56,7 +56,7 @@ body {
     .btn-container {
 
       &.warning {
-        padding-top : 2em;
+        padding-top: 2em;
         padding-bottom: 0.5em;
       }
 
@@ -80,3 +80,84 @@ body {
   }
 
 }
+
+//media query
+$breakpoint-tablet: 960px;
+
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+
+  body {
+
+    #ctrl-container {
+      flex-direction: row;
+      margin-top: 0;
+      align-items: center;
+      padding: 0.15em;
+      justify-content: center;
+
+      #music-container {
+        align-items: baseline;
+        width: 25%;
+
+        #mute-container {
+          padding: 0;
+
+          #mute-btn {
+            height: 50px;
+            width: 50px;
+          }
+        }
+      }
+
+      #artist-container {
+        font-size: 0.6em;
+
+      }
+
+      #btn-container {
+        display: flex;
+        flex-direction: row;
+        font-size: 0.8em;
+
+        button {
+          padding: 0;
+          background-repeat: no-repeat;
+          background-position: center;
+          border: 0.1em solid #F1F0F0;
+          cursor: pointer;
+          height: 50px;
+          width: 50px;
+          border-radius: 10%;
+          box-shadow: 20px 20px 60px #d0d0d0,
+          -20px -20px 60px #ffffff;
+          outline: none !important;
+        }
+
+        .warning {
+          padding: 0.15em;
+        }
+
+        .rules {
+          padding: 0.15em;
+        }
+
+      }
+
+      #music-container {
+        display: flex;
+        flex-direction: column;
+
+      }
+
+      #github-container {
+        padding: 0 0.15em 0 0.15em;
+
+      }
+
+    }
+
+  }
+
+}
+
+//media query

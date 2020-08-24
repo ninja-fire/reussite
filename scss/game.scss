@@ -7,32 +7,31 @@
   background-color: #F5F5F5;
   border-radius: 20px;
   box-sizing: content-box;
-  box-shadow: 20px 20px 60px #cccccc,
-  -20px -20px 60px #ffffff;
+  //box-shadow: 20px 20px 60px #cccccc,
+  //-20px -20px 60px #ffffff;
   display: flex;
   flex-direction: row;
   height: calc(100vh - 4em);
 
+  #deck-ctrl-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 
 //media query
+$breakpoint-tablet: 960px;
 
 @media (max-width: $breakpoint-tablet) and (orientation: landscape) {
   #game-container {
     height: calc(100vh - 2em);
 
-  }
-
-  #rules-popup-container {
-
-    #rules-container {
-      height: 95%;
-      width: 98%;
-    }
-  }
+    //#deck-ctrl-container {
+    //  display: flex;
+    //  flex-direction: row;
+    //}
 
   }
-
-
+}
 //media query

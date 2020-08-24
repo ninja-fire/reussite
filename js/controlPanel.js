@@ -17,9 +17,13 @@ class ControlPanel {
 
   init() {
 
+    const musicContainer = document.createElement('div');
+    musicContainer.id = 'music-container';
+    this.container.appendChild(musicContainer);
+
     const muteContainer = document.createElement('div');
     muteContainer.id = 'mute-container';
-    this.container.appendChild(muteContainer);
+    musicContainer.appendChild(muteContainer);
 
     this.muteBtn = document.createElement('button');
     this.muteBtn.id = 'mute-btn';
@@ -27,7 +31,7 @@ class ControlPanel {
 
     const artistContainer = document.createElement('div');
     artistContainer.id = 'artist-container';
-    this.container.appendChild(artistContainer);
+    musicContainer.appendChild(artistContainer);
 
     const artistPara = document.createElement('p');
     artistPara.id = 'artist-para';
@@ -41,9 +45,13 @@ class ControlPanel {
     artistLink.innerHTML = `Alkemist`;
     artistPara.appendChild(artistLink);
 
+    const btnContainer = document.createElement('div');
+    btnContainer.id = 'btn-container';
+    this.container.appendChild(btnContainer);
+
     const btnWarningContainer = document.createElement('div');
     btnWarningContainer.classList.add('btn-container', 'warning');
-    this.container.appendChild(btnWarningContainer);
+    btnContainer.appendChild(btnWarningContainer);
 
     this.btnWarning = document.createElement('button');
     this.btnWarning.innerText = `Reset`;
@@ -51,7 +59,7 @@ class ControlPanel {
 
     const btnRulesContainer = document.createElement('div');
     btnRulesContainer.classList.add('btn-container', 'rules');
-    this.container.appendChild(btnRulesContainer);
+    btnContainer.appendChild(btnRulesContainer);
 
     this.btnRules = document.createElement('button');
     this.btnRules.innerText = `Rules`;
