@@ -50,6 +50,6 @@
   "dependencies": {
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-pwa-manifest": "^3.0.10",
-    "parcel-plugin-workbox": "^0.2.0"
+    "parcel-plugin-workbox": "https://github.com/ninja-fire/parcel-plugin-workbox.git#fix"
   }
 }
