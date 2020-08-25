@@ -1,9 +1,9 @@
 import alkemist from "../sound/alkemist.mp3";
-import {Rules} from "./rules";
 
 class ControlPanel {
 
   constructor(rootContainer, reset) {
+
     this.rootContainer = rootContainer;
     this.container = document.createElement('div');
     this.container.id = 'ctrl-container';
@@ -86,23 +86,52 @@ class ControlPanel {
 
   loadTrack() {
 
-    this.track.play()
-      .then(() => {
-        console.log('track on');
-        this.muteBtn.addEventListener('click', () => {
-          if (this.track.duration > 0 && !this.track.paused) {
-            this.track.pause();
-            this.muteBtn.classList.add('off');
+    this.muteBtn.addEventListener('click', () => {
 
-            console.log('track paused');
-          } else {
-            this.track.play().catch((error) => console.error(error));
-            this.muteBtn.classList.remove('off');
-          }
-        })
-      }).catch((error) => {
-      console.error(error);
+      if (this.track.duration > 0 && !this.track.paused) {
+
+        this.track.pause();
+        this.muteBtn.classList.add('off');
+
+        localStorage.setItem('musicStatus', 'off');
+
+        console.log('track paused');
+
+      } else {
+
+        this.track.play().catch((error) => console.error(error));
+        this.muteBtn.classList.remove('off');
+
+        localStorage.setItem('musicStatus', 'on');
+
+        console.log('track on');
+
+      }
     });
+
+    const musicStatus = localStorage.getItem('musicStatus');
+    console.log(localStorage);
+
+    if (musicStatus !== 'off') {
+
+      this.track.play()
+        .then(() => {
+
+          localStorage.setItem('musicStatus', 'on');
+
+          console.log('track on');
+
+        }).catch((error) => {
+
+        console.error(error);
+
+      });
+
+    } else {
+
+      this.muteBtn.classList.add('off');
+
+    }
   }
 
   onReset() {
