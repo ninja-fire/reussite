@@ -115,20 +115,29 @@ class Game {
 
   soundPlay() {
 
-    const audio = document.createElement('audio');
-    audio.src = cardSound;
-    this.container.appendChild(audio);
+    const soundPlay = localStorage.getItem('musicStatus');
 
-    audio.play()
-      .then(() => {
-        console.log('sound on');
-        audio.addEventListener('ended', () => {
-          this.container.removeChild(audio);
-          console.log('sound off');
-        })
-      }).catch((error) => {
-      console.error(error);
-    });
+    if (soundPlay !== 'off') {
+
+      const audio = document.createElement('audio');
+      audio.src = cardSound;
+      this.container.appendChild(audio);
+
+      audio.play()
+        .then(() => {
+
+          console.log('sound on');
+          audio.addEventListener('ended', () => {
+            this.container.removeChild(audio);
+            console.log('sound off');
+
+          })
+        }).catch((error) => {
+
+        console.error(error);
+
+      });
+    }
 
   }
 
