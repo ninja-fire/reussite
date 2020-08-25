@@ -1,7 +1,7 @@
 {
   "name": "reussite",
   "version": "1.0.0",
-  "description": "",
+  "description": "Reussite is a card game for single player, adapted to mobile and computer devices.",
   "main": "js/main.js",
   "scripts": {
     "dev": "parcel index.html",
@@ -11,13 +11,45 @@
     "type": "git",
     "url": "git@github.com:ninja-fire/reussite.git"
   },
-  "author": "",
+  "author": "Ninja fire",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ninja-fire/reussite/issues"
   },
   "homepage": "https://github.com/ninja-fire/reussite",
+  "pwaManifest": {
+    "lang": "en",
+    "name": "reussite PWA",
+    "shortName": "R PWA",
+    "startURL": "./index.html",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "theme": "#F5F5F5",
+    "backgroundColor": "#F5F5F5",
+    "generateIconOptions": {
+      "baseIcon": "./image/icon.svg",
+      "sizes": [
+        128,
+        144,
+        152,
+        192,
+        256,
+        384,
+        512
+      ],
+      "genFavicons": true
+    }
+  },
+  "workbox": {
+    "importScripts": [
+      "./js/worker.js"
+    ],
+    "globDirectory": "./dist",
+    "globPatterns": "**/*.{css,html,gif,js,jpg,png,svg,webp}"
+  },
   "dependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-pwa-manifest": "^3.0.10",
+    "parcel-plugin-workbox": "^0.2.0"
   }
 }
