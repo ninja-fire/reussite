@@ -1,0 +1,163 @@
+body {
+
+  #ctrl-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #D3D3D3;
+    border-radius: 12px;
+    margin-top: 3em;
+
+    #mute-container {
+      padding-bottom: 0.5em;
+      padding-top: 1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      #mute-btn {
+        background-image: url('/image/sound-on.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 0.1em solid #F1F0F0;
+        cursor: pointer;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        box-shadow: 20px 20px 60px #d0d0d0,
+        -20px -20px 60px #ffffff;
+        outline: none !important;
+
+        &.off {
+          background-image: url('/image/sound-off.svg');
+          box-shadow: inset 2px 2px 6px #d0d0d0,
+          inset -2px -2px 6px #ffffff;
+        }
+
+      }
+
+    }
+
+    #artist-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-family: 'Hammersmith One', sans-serif;
+      font-size: 0.8em;
+      padding: 0.5em;
+      color: #595959;
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+    }
+
+    .btn-container {
+
+      &.warning {
+        padding-top: 2em;
+        padding-bottom: 0.5em;
+      }
+
+      button {
+        padding: 0.5em 2.5em;
+      }
+    }
+
+    #github-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 1em;
+
+      a {
+        background-image: url('/image/github.svg');
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+}
+
+//media query
+$breakpoint-tablet: 960px;
+
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+
+  body {
+
+    #ctrl-container {
+      flex-direction: row;
+      margin-top: 0;
+      align-items: center;
+      padding: 0.15em;
+      justify-content: center;
+
+      #music-container {
+        align-items: baseline;
+        width: 25%;
+
+        #mute-container {
+          padding: 0;
+
+          #mute-btn {
+            height: 50px;
+            width: 50px;
+          }
+        }
+      }
+
+      #artist-container {
+        font-size: 0.6em;
+
+      }
+
+      #btn-container {
+        display: flex;
+        flex-direction: row;
+        font-size: 0.8em;
+
+        button {
+          padding: 0;
+          background-repeat: no-repeat;
+          background-position: center;
+          border: 0.1em solid #F1F0F0;
+          cursor: pointer;
+          height: 50px;
+          width: 50px;
+          border-radius: 10%;
+          box-shadow: 20px 20px 60px #d0d0d0,
+          -20px -20px 60px #ffffff;
+          outline: none !important;
+        }
+
+        .warning {
+          padding: 0.15em;
+        }
+
+        .rules {
+          padding: 0.15em;
+        }
+
+      }
+
+      #music-container {
+        display: flex;
+        flex-direction: column;
+
+      }
+
+      #github-container {
+        padding: 0 0.15em 0 0.15em;
+
+      }
+
+    }
+
+  }
+
+}
+
+//media query

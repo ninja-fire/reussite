@@ -1,6 +1,8 @@
-import { Deck } from '/js/deck.js';
-import { Board } from '/js/board.js';
+import {Deck} from '/js/deck.js';
+import {Board} from '/js/board.js';
+import {ControlPanel} from '/js/controlPanel.js';
 import cardSound from '/sound/card.mp3'
+import {Rules} from "./rules";
 
 class Game {
 
@@ -10,19 +12,31 @@ class Game {
 
   }
 
-  init (onEnd) {
+  init(onEnd) {
 
     this.container = document.createElement('div');
     this.container.id = 'game-container';
     this.rootContainer.appendChild(this.container);
 
+    this.deckCtrlContainer = document.createElement('div');
+    this.deckCtrlContainer.id = 'deck-ctrl-container';
+    this.container.appendChild(this.deckCtrlContainer);
+
     this.isEndOfGame = false;
 
     this.onEnd = onEnd;
 
-    this.deck = new Deck(this.container, () => this.pickCard());
+    this.deck = new Deck(this.deckCtrlContainer, () => this.pickCard());
 
-    this.board = new Board(this.container, (card) => this.moveCard(card) );
+    this.controlPanel = new ControlPanel(this.deckCtrlContainer, () => this.reset());
+
+    this.rulesContainer = new Rules(this.rootContainer);
+    this.controlPanel.btnRules.addEventListener('click', () => this.rulesContainer.init(() => {
+      this.destroy();
+      onEnd();
+    }));
+
+    this.board = new Board(this.container, (card) => this.moveCard(card));
 
   }
 
@@ -38,7 +52,7 @@ class Game {
         this.soundPlay();
         console.log(this.toJson());
 
-        if (this.deck.empty() && !this.board.canMoveAtLeastOne() ){
+        if (this.deck.empty() && !this.board.canMoveAtLeastOne()) {
           this.isEndOfGame = true;
           this.destroy();
           this.onEnd(false);
@@ -60,23 +74,23 @@ class Game {
       if (this.board.canMove(card)) {
 
         this.board.suppPreviousCard(card);
-        console.log(this.toJson() );
+        console.log(this.toJson());
 
-        if (this.board.isWinSize() && this.deck.empty() ) {
+        if (this.board.isWinSize() && this.deck.empty()) {
 
           this.isEndOfGame = true;
           console.log('Win');
           this.destroy();
           this.onEnd(true);
 
-        } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne() ) {
+        } else if (!this.board.isWinSize() && this.deck.empty() && !this.board.canMoveAtLeastOne()) {
 
           this.isEndOfGame = true;
 
           console.log('Lose');
           this.destroy();
+          debugger;
           this.onEnd(false);
-
 
         }
 
@@ -85,9 +99,10 @@ class Game {
     }
     console.log('You can not move');
     return false;
+
   }
 
-  destroy () {
+  destroy() {
 
     this.board.destroy();
     this.deck.destroy();
@@ -98,23 +113,38 @@ class Game {
 
   }
 
-  soundPlay () {
+  soundPlay() {
 
-    // const audio = new Audio('sound/card.mp3');
-    const audio = document.createElement('audio');
-    audio.src = cardSound;
-    this.container.appendChild(audio);
+    const soundPlay = localStorage.getItem('musicStatus');
 
-    audio.play()
-      .then(() => {
-        console.log('sound on');
-        audio.addEventListener('ended', () => {
-          this.container.removeChild(audio);
-          console.log('sound off');
-        })
-      }).catch((error) => {
-      console.error(error);
-    });
+    if (soundPlay !== 'off') {
+
+      const audio = document.createElement('audio');
+      audio.src = cardSound;
+      this.container.appendChild(audio);
+
+      audio.play()
+        .then(() => {
+
+          console.log('sound on');
+          audio.addEventListener('ended', () => {
+            this.container.removeChild(audio);
+            console.log('sound off');
+
+          })
+        }).catch((error) => {
+
+        console.error(error);
+
+      });
+    }
+
+  }
+
+  reset() {
+
+    this.destroy();
+    this.init(this.onEnd);
 
   }
 
@@ -130,4 +160,4 @@ class Game {
 
 }
 
-export { Game };
+export {Game};

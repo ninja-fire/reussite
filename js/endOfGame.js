@@ -33,7 +33,7 @@ class EndOfGame {
     statusContainer.appendChild(paraStatus);
 
     const btnBlueContainer = document.createElement('div');
-    btnBlueContainer.classList.add('btn-b-container');
+    btnBlueContainer.classList.add('btn-container', 'play');
     btnRulesContainer.appendChild(btnBlueContainer);
 
     const buttonBlue = document.createElement('button');
@@ -41,7 +41,7 @@ class EndOfGame {
     buttonBlue.innerText = `Let’s start a new game !`;
 
     const btnPinkContainer = document.createElement('div');
-    btnPinkContainer.classList.add('btn-p-container');
+    btnPinkContainer.classList.add('btn-container', 'rules');
     btnRulesContainer.appendChild(btnPinkContainer);
 
     const buttonPink = document.createElement('button');
