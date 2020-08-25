@@ -19,8 +19,8 @@
   "homepage": "https://github.com/ninja-fire/reussite",
   "pwaManifest": {
     "lang": "en",
-    "name": "reussite PWA",
-    "shortName": "R PWA",
+    "name": "Reussite",
+    "shortName": "Reussite",
     "startURL": "./index.html",
     "display": "fullscreen",
     "orientation": "landscape",
@@ -37,6 +37,7 @@
         384,
         512
       ],
+      "purpose": ["maskable", "maskable", "maskable", "maskable", "maskable", "maskable", "maskable"],
       "genFavicons": true
     }
   },
