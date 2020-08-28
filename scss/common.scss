@@ -143,6 +143,10 @@ body {
 
     #root-container {
 
+      .cross-container{
+        padding-bottom: 0;
+      }
+
       .status-container {
         font-size: 2.5em;
       }

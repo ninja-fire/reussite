@@ -143,6 +143,7 @@ class ControlPanel {
 
     const validationContainer = document.createElement('div');
     validationContainer.classList.add('popup');
+    validationContainer.id = 'popup';
     validationPopup.appendChild(validationContainer);
 
     const crossContainer = document.createElement('div');

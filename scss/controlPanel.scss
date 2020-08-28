@@ -7,48 +7,55 @@ body {
     border-radius: 12px;
     margin: 2em;
 
-    #mute-container {
-      padding-bottom: 0.5em;
-      padding-top: 1em;
+    #music-container {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
 
-      #mute-btn {
-        background-image: url('/image/sound-on.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 0.1em solid #F1F0F0;
-        cursor: pointer;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        box-shadow: 20px 20px 60px #d0d0d0,
-        -20px -20px 60px #ffffff;
-        outline: none !important;
+      #mute-container {
+        padding-bottom: 0.5em;
+        padding-top: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
 
-        &.off {
-          background-image: url('/image/sound-off.svg');
-          box-shadow: inset 2px 2px 6px #d0d0d0,
-          inset -2px -2px 6px #ffffff;
+        #mute-btn {
+          background-image: url('/image/sound-on.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          border: 0.1em solid #F1F0F0;
+          cursor: pointer;
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          box-shadow: 20px 20px 60px #d0d0d0,
+          -20px -20px 60px #ffffff;
+          outline: none !important;
+
+          &.off {
+            background-image: url('/image/sound-off.svg');
+            box-shadow: inset 2px 2px 6px #d0d0d0,
+            inset -2px -2px 6px #ffffff;
+          }
+
         }
 
       }
 
-    }
+      #artist-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-family: 'Hammersmith One', sans-serif;
+        font-size: 0.8em;
+        padding-top: 0.2em;
+        color: #595959;
+        text-align: center;
 
-    #artist-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      font-family: 'Hammersmith One', sans-serif;
-      font-size: 0.8em;
-      padding-top: 0.2em;
-      color: #595959;
-
-      a {
-        color: black;
-        text-decoration: none;
+        a {
+          color: black;
+          text-decoration: none;
+        }
       }
     }
 
@@ -100,7 +107,7 @@ $breakpoint-tablet: 960px;
       justify-content: space-evenly;
 
       #music-container {
-        align-items: center;
+
         width: 25%;
 
         #mute-container {
@@ -111,11 +118,11 @@ $breakpoint-tablet: 960px;
             width: 50px;
           }
         }
-      }
 
-      #artist-container {
-        font-size: 0.6em;
+        #artist-container {
+          font-size: 0.6em;
 
+        }
       }
 
       #btn-container {
@@ -143,12 +150,6 @@ $breakpoint-tablet: 960px;
         .rules {
           padding: 0.15em;
         }
-
-      }
-
-      #music-container {
-        display: flex;
-        flex-direction: column;
 
       }
 
