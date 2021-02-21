@@ -2,7 +2,7 @@ body {
 
   #validation-container {
 
-    .popup{
+    .popup {
       height: 25%;
       text-align: center;
     }
@@ -12,10 +12,10 @@ body {
     }
 
     #title-container {
-      padding-bottom : 1em;
+      padding-bottom: 1em;
 
       #title {
-        color : #4B5B92;
+        color: #4B5B92;
         font-family: 'Hammersmith One', sans-serif;
         font-size: 2em;
 
@@ -23,7 +23,7 @@ body {
     }
 
     #message-container {
-      padding : 0.5em 0.5em 1.5em 0.5em;
+      padding: 0.5em 0.5em 1.5em 0.5em;
 
       #message {
         font-family: 'Roboto', sans-serif;
@@ -34,3 +34,24 @@ body {
     }
   }
 }
+
+//media query
+$breakpoint-tablet: 960px;
+
+@media (max-width: $breakpoint-tablet) and (orientation: landscape) {
+
+  body {
+
+    #validation-container {
+
+      .popup {
+        height: 64%;
+        overflow-y: hidden;
+
+
+      }
+    }
+  }
+}
+
+//media query

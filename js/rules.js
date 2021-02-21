@@ -10,7 +10,7 @@ class Rules {
   init (onStart) {
 
     this.container = document.createElement('div');
-    this.container.id = 'rules-container'
+    this.container.id = 'rules-container';
     this.container.classList.add('popup-container');
     this.rootContainer.appendChild(this.container);
 
@@ -33,19 +33,24 @@ class Rules {
     rulesImgCtn.src = rulesImg;
     rulesContainer.appendChild(rulesImgCtn);
 
-    const btnBlueContainer = document.createElement('div');
-    btnBlueContainer.classList.add('btn-container', 'play');
-    rulesContainer.appendChild(btnBlueContainer);
+    if(onStart){
 
-    const btnBlue = document.createElement('button');
-    btnBlue.id = 'btn-intro';
-    btnBlue.innerText = `Let’s start a new game !`;
-    btnBlueContainer.appendChild(btnBlue);
+      const btnBlueContainer = document.createElement('div');
+      btnBlueContainer.classList.add('btn-container', 'play');
+      rulesContainer.appendChild(btnBlueContainer);
 
-    btnBlue.addEventListener('click', () => {
-      this.destroy();
-      onStart();
-    });
+      const btnBlue = document.createElement('button');
+      btnBlue.id = 'btn-intro';
+      btnBlue.innerText = `Let’s start a new game !`;
+      btnBlueContainer.appendChild(btnBlue);
+
+      btnBlue.addEventListener('click', () => {
+        this.destroy();
+        onStart();
+      });
+
+    }
+
   }
 
 

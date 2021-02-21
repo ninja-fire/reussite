@@ -31,10 +31,7 @@ class Game {
     this.controlPanel = new ControlPanel(this.deckCtrlContainer, () => this.reset());
 
     this.rulesContainer = new Rules(this.rootContainer);
-    this.controlPanel.btnRules.addEventListener('click', () => this.rulesContainer.init(() => {
-      this.destroy();
-      onEnd();
-    }));
+    this.controlPanel.btnRules.addEventListener('click', () => this.rulesContainer.init() );
 
     this.board = new Board(this.container, (card) => this.moveCard(card));
 

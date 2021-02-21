@@ -17,6 +17,8 @@
     display: flex;
     flex-direction: column;
   }
+
+
 }
 
 
@@ -25,12 +27,7 @@ $breakpoint-tablet: 960px;
 
 @media (max-width: $breakpoint-tablet) and (orientation: landscape) {
   #game-container {
-    height: calc(100vh - 2em);
-
-    //#deck-ctrl-container {
-    //  display: flex;
-    //  flex-direction: row;
-    //}
+    height: 100%;
 
   }
 }
